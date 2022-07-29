@@ -5476,11 +5476,6 @@ int main(void){
 
 
     lcd_8bit_initialize(&lcd8bit);
-
-    char x[4]= "101";
-
-
-
     hal_ccp_init(&ccp1obj);
     gpio_pin_direction_initialize(&ccp1_pin);
     hal_timer1_initialize(&tmr1);

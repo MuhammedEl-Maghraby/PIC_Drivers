@@ -614,89 +614,76 @@ Version 4.0 HI-TECH Software Intermediate Code
 "152
 [; ;application.c: 152:     lcd_8bit_initialize(&lcd8bit);
 [e ( _lcd_8bit_initialize (1 -> &U _lcd8bit `*CS281 ]
+"153
+[; ;application.c: 153:     hal_ccp_init(&ccp1obj);
+[e ( _hal_ccp_init (1 -> &U _ccp1obj `*CS291 ]
+"154
+[; ;application.c: 154:     gpio_pin_direction_initialize(&ccp1_pin);
+[e ( _gpio_pin_direction_initialize (1 -> &U _ccp1_pin `*CS272 ]
+"155
+[; ;application.c: 155:     hal_timer1_initialize(&tmr1);
+[e ( _hal_timer1_initialize (1 -> &U _tmr1 `*CS286 ]
+"157
+[; ;application.c: 157:     T3CONbits.T3CCP2 = 0;
+[e = . . _T3CONbits 1 5 -> -> 0 `i `uc ]
+"158
+[; ;application.c: 158:     T3CONbits.T3CCP1 = 0;
+[e = . . _T3CONbits 1 3 -> -> 0 `i `uc ]
 [v F3567 `uc ~T0 @X0 -> 4 `i s ]
 [i F3567
 :U ..
-"154
-[; ;application.c: 154:     char x[4]= "101";
--> 49 `c
--> 48 `c
--> 49 `c
--> 0 `c
-..
-]
-[v _x `uc ~T0 @X0 -> 4 `i a ]
-[e = _x F3567 ]
-"158
-[; ;application.c: 158:     hal_ccp_init(&ccp1obj);
-[e ( _hal_ccp_init (1 -> &U _ccp1obj `*CS291 ]
-"159
-[; ;application.c: 159:     gpio_pin_direction_initialize(&ccp1_pin);
-[e ( _gpio_pin_direction_initialize (1 -> &U _ccp1_pin `*CS272 ]
 "160
-[; ;application.c: 160:     hal_timer1_initialize(&tmr1);
-[e ( _hal_timer1_initialize (1 -> &U _tmr1 `*CS286 ]
-"162
-[; ;application.c: 162:     T3CONbits.T3CCP2 = 0;
-[e = . . _T3CONbits 1 5 -> -> 0 `i `uc ]
-"163
-[; ;application.c: 163:     T3CONbits.T3CCP1 = 0;
-[e = . . _T3CONbits 1 3 -> -> 0 `i `uc ]
-[v F3569 `uc ~T0 @X0 -> 4 `i s ]
-[i F3569
-:U ..
-"165
-[; ;application.c: 165:     char arr[4]={0};
+[; ;application.c: 160:     char arr[4]={0};
 -> -> 0 `i `uc
 ..
 ]
 [v _arr `uc ~T0 @X0 -> 4 `i a ]
-[e = _arr F3569 ]
-"166
-[; ;application.c: 166:     lcd_8bit_send_string(&lcd8bit,"Frequency");
+[e = _arr F3567 ]
+"161
+[; ;application.c: 161:     lcd_8bit_send_string(&lcd8bit,"Frequency");
 [e ( _lcd_8bit_send_string (2 , -> &U _lcd8bit `*CS281 :s 1C ]
-"167
-[; ;application.c: 167:     lcd_8bit_send_char_data(&lcd8bit,'=');
+"162
+[; ;application.c: 162:     lcd_8bit_send_char_data(&lcd8bit,'=');
 [e ( _lcd_8bit_send_char_data (2 , -> &U _lcd8bit `*CS281 -> -> 61 `ui `uc ]
-"168
-[; ;application.c: 168:     while(1){
+"163
+[; ;application.c: 163:     while(1){
 [e :U 299 ]
 {
-"169
-[; ;application.c: 169:         if(second_edge_flag == 2){
+"164
+[; ;application.c: 164:         if(second_edge_flag == 2){
 [e $ ! == -> _second_edge_flag `i -> 2 `i 301  ]
 {
-"170
-[; ;application.c: 170:             period = end + (last_ovf * 65536);
+"165
+[; ;application.c: 165:             period = end + (last_ovf * 65536);
 [e = _period -> + -> _end `l * -> _last_ovf `l -> 65536 `l `ul ]
-"171
-[; ;application.c: 171:             freq = (uint32_t)(1 / (period / 1000000.0));
+"166
+[; ;application.c: 166:             freq = (uint32_t)(1 / (period / 1000000.0));
 [e = _freq -> / -> -> 1 `i `d / -> _period `d .1000000.0 `ul ]
-"172
-[; ;application.c: 172:             second_edge_flag = 0;
+"167
+[; ;application.c: 167:             second_edge_flag = 0;
 [e = _second_edge_flag -> -> 0 `i `uc ]
-"173
-[; ;application.c: 173:         }
+"168
+[; ;application.c: 168:         }
 }
 [e :U 301 ]
-"175
-[; ;application.c: 175:         convert_byte_to_string(freq,arr);
+"170
+[; ;application.c: 170:         convert_byte_to_string(freq,arr);
 [e ( _convert_byte_to_string (2 , -> _freq `uc -> &U _arr `*uc ]
-"176
-[; ;application.c: 176:         lcd_8bit_send_string_pos(&lcd8bit,1,11,arr);
+"171
+[; ;application.c: 171:         lcd_8bit_send_string_pos(&lcd8bit,1,11,arr);
 [e ( _lcd_8bit_send_string_pos (4 , , , -> &U _lcd8bit `*CS281 -> -> 1 `i `uc -> -> 11 `i `uc -> &U _arr `*uc ]
-"179
-[; ;application.c: 179:     }
+"174
+[; ;application.c: 174:     }
 }
 [e :U 298 ]
 [e $U 299  ]
 [e :U 300 ]
-"184
-[; ;application.c: 184:     return (0);
+"179
+[; ;application.c: 179:     return (0);
 [e ) -> 0 `i ]
 [e $UE 297  ]
-"185
-[; ;application.c: 185: }
+"180
+[; ;application.c: 180: }
 [e :UE 297 ]
 }
 [a 1C 70 114 101 113 117 101 110 99 121 0 ]
