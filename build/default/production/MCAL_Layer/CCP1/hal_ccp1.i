@@ -4723,7 +4723,7 @@ typedef enum{
     INTERRUPT_HIGH_PRIORITY
 }interrupt_priority_cfg;
 # 14 "MCAL_Layer/CCP1/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h" 2
-# 86 "MCAL_Layer/CCP1/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
+# 97 "MCAL_Layer/CCP1/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
 void ADC_ISR(void);
 void Timer0_ISR(void);
 void Timer1_ISR(void);
@@ -4908,7 +4908,7 @@ STD_ReturnType hal_ccp_init(const ccp_t* ccpobj){
             }
 
 
-            PR2 = (uint8_t)((4000000 / (ccpobj->ccp_pwm_frequency * 4.0 * ccpobj->timer2_prescaler_value * ccpobj->timer2_postscaler_value ))-1);
+            PR2 = (uint8_t)((8000000 / (ccpobj->ccp_pwm_frequency * 4.0 * ccpobj->timer2_prescaler_value * ccpobj->timer2_postscaler_value ))-1);
 
         }
         else{

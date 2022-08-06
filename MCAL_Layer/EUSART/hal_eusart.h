@@ -63,8 +63,15 @@
 #define EUSART_Transmitter_Enabled()  (TXSTAbits.TXEN = EUSART_TX_ENABLED)
 #define EUSART_Transmitter_Disabled() (TXSTAbits.TXEN = EUSART_TX_DISABLED)
 
+#define EUSART_Transmitter_9bit_Transmission_Enabled()      (TXSTAbits.TX9 = EUSART_TX_9BIT_SELECTED)
+#define EUSART_Transmitter_9bit_Transmission_Disabled()     (TXSTAbits.TX9 = EUSART_TX_9BIT_NOT_SELECTED)
+
+
 #define EUSART_Receiver_Enabled()     (RCSTAbits.CREN = EUSART_RX_ENABLED)
 #define EUSART_Receiver_Disabled()    (RCSTAbits.CREN = EUSART_RX_DISABLED)
+
+#define EUSART_Receiver_9bit_Transmission_Enabled()      (RCSTAbits.RX9 = EUSART_RX_9BIT_SELECTED)
+#define EUSART_Receiver_9bit_Transmission_Disabled()     (RCSTAbits.RX9 = EUSART_RX_9BIT_NOT_SELECTED)
 
 #define EUSART_BaudRate_Generator_16Bit_Select()  (BAUDCONbits.BRG16 = EUSART_BAUDRATE_GENERATOR_16BIT_SELECTED)
 #define EUSART_BaudRate_Generator_8Bit_Select()   (BAUDCONbits.BRG16 = EUSART_BAUDRATE_GENERATOR_8BIT_SELECTED)
@@ -108,8 +115,8 @@ typedef struct{
     uint8  mode_of_operation;  /*@ref : EUSART_ASYNCHRONOUS_MODE or EUSART_SYNCHRONOUS_MODE */
     uint32 baudrate_value;
     baudrate_cfg_bits_t baudrate_cfg;    /*@ref : baudrate_cfg_bits_t*/
-    eusart_tx_t  eusart_tx_cfg;          /*@ref : eusart_tx_t*/
-    eusart_rx_t  eusart_rx_cfg;          /*@ref : eusart_rx_t*/
+    eusart_tx_t  *eusart_tx_cfg;          /*@ref : eusart_tx_t*/
+    eusart_rx_t  *eusart_rx_cfg;          /*@ref : eusart_rx_t*/
 }eusart_t;
 /*Section: Function Prototypes*/
 STD_ReturnType mcal_eusart_asynchronous_init(const eusart_t *eusart_obj);
@@ -121,6 +128,5 @@ STD_ReturnType mcal_eusart_receive_byte_blocking(uint8 *data);
 STD_ReturnType mcal_eusart_receive_byte_non_blocking(uint8  *data);
 STD_ReturnType mcal_eusart_send_string_blocking(uint8 *str , uint8 str_length);
 STD_ReturnType mcal_eusart_send_string_non_blocking(uint8 *str , uint8 str_length);
-
 #endif	/* HAL_EUSART_H */
 

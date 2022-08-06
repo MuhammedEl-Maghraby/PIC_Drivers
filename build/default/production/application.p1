@@ -1,98 +1,34 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"69 ./MCAL_Layer/ADC/../../MCAL_Layer/GPIO/hal_gpio.h
-[s S272 :3 `uc 1 :3 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S272 . port pin direction logic ]
-"55 ./ECU_Layer/Chr_LCD/ecu_chr_lcd.h
-[; ;./ECU_Layer/Chr_LCD/ecu_chr_lcd.h: 55: typedef struct{
-[s S281 `S272 1 `S272 1 `S272 -> 8 `i ]
-[n S281 . lcd_rs lcd_en lcd_data ]
-"52 application.c
-[; ;application.c: 52: chr_lcd_8bit_t lcd8bit = {
-[c E2818 0 1 2 3 4 .. ]
-[n E2818 . PORTA_INDEX PORTB_INDEX PORTC_INDEX PORTD_INDEX PORTE_INDEX  ]
-[c E2808 0 1 2 3 4 5 6 7 .. ]
-[n E2808 . PIN0 PIN1 PIN2 PIN3 PIN4 PIN5 PIN6 PIN7  ]
-[c E2804 0 1 .. ]
-[n E2804 . OUTPUT INPUT  ]
-[c E2800 0 1 .. ]
-[n E2800 . LOW HIGH  ]
-[v F3510 `(v ~T0 @X0 0 tf ]
-[v F3512 `(v ~T0 @X0 0 tf ]
-"110
-[; ;application.c: 110: ccp_t ccp1obj = {
-[c E3496 0 1 2 .. ]
-[n E3496 . CCP_COMPARE_MODE_ CCP_CAPTURE_MODE_ CCP_PWM_MODE_  ]
-"62 ./MCAL_Layer/CCP1/hal_ccp1.h
-[; ;./MCAL_Layer/CCP1/hal_ccp1.h: 62: typedef struct{
-[s S291 `*F3510 1 `*F3512 1 `uc 1 `uc 1 `uc 1 `E3496 1 `uc 1 `ul 1 :2 `uc 1 :4 `uc 1 :2 `uc 1 `us 1 ]
-[n S291 . CCP1_Handler CCP2_Handler ccp1_interrupt_priority_level ccp2_interrupt_priority_level cpp_instance ccp_mode ccp_submode ccp_pwm_frequency timer2_prescaler_value timer2_postscaler_value . ccp_pwm_dutycyle ]
-"51 application.c
-[; ;application.c: 51: void ccp1_app_isr(void);
-[v _ccp1_app_isr `(v ~T0 @X0 0 ef ]
 [v F3561 `(v ~T0 @X0 0 tf ]
-[v F3401 `(v ~T0 @X0 0 tf ]
-"64 ./MCAL_Layer/Timer1/hal_timer1.h
-[; ;./MCAL_Layer/Timer1/hal_timer1.h: 64: typedef struct{
-[s S286 `*F3401 1 `uc 1 `us 1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :2 `uc 1 ]
-[n S286 . TMR1_Handler timer1_interrupt_priority_level timer1_preload_value timer1_mode timer1_clock_source timer1_sync_mode timer1_Osc timer1_prescaler timer1_rw_mode . ]
-"50 application.c
-[; ;application.c: 50: void timer1_app_isr(void);
-[v _timer1_app_isr `(v ~T0 @X0 0 ef ]
-"5328 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4620.h
-[v _TMR1 `Vus ~T0 @X0 0 e@4046 ]
-"93 ./MCAL_Layer/Timer1/hal_timer1.h
-[; ;./MCAL_Layer/Timer1/hal_timer1.h: 93: STD_ReturnType hal_timer1_enable(const timer1_t* timer1);
-[v _hal_timer1_enable `(uc ~T0 @X0 0 ef1`*CS286 ]
-"91 ./MCAL_Layer/CCP1/hal_ccp1.h
-[; ;./MCAL_Layer/CCP1/hal_ccp1.h: 91: STD_ReturnType hal_ccp_readCaptureValue(const ccp_t* ccpobj,uint16_t* value);
-[v _hal_ccp_readCaptureValue `(uc ~T0 @X0 0 ef2`*CS291`*us ]
-"94 ./MCAL_Layer/Timer1/hal_timer1.h
-[; ;./MCAL_Layer/Timer1/hal_timer1.h: 94: STD_ReturnType hal_timer1_disable(const timer1_t* timer1);
-[v _hal_timer1_disable `(uc ~T0 @X0 0 ef1`*CS286 ]
+"96 ./MCAL_Layer/EUSART/hal_eusart.h
+[; ;./MCAL_Layer/EUSART/hal_eusart.h: 96: typedef struct{
+[s S292 :1 `uc 1 :1 `uc 1 :1 `uc 1 :5 `uc 1 `*F3561 1 ]
+[n S292 . eusart_tx_enabled eusart_9bit_transmission eusart_tx_interrupt_enabled eusart_tx_reserved Int_Tx_Handler_Var ]
+[v F3598 `(v ~T0 @X0 0 tf ]
+"27 application.c
+[; ;application.c: 27: eusart_t eusart = {
+[c E3547 0 1 2 3 4 5 .. ]
+[n E3547 . EUSART_Asynchronous_8bit_LowSpeed EUSART_Asynchronous_8bit_HighSpeed EUSART_Asynchronous_16bit_LowSpeed EUSART_Asynchronous_16bit_HighSpeed EUSART_Synchronous_8bit EUSART_Synchronous_16bit  ]
+[v F3569 `(v ~T0 @X0 0 tf ]
+"106 ./MCAL_Layer/EUSART/hal_eusart.h
+[; ;./MCAL_Layer/EUSART/hal_eusart.h: 106: typedef struct{
+[s S293 :1 `uc 1 :1 `uc 1 :1 `uc 1 :5 `uc 1 `*F3569 1 ]
+[n S293 . eusart_rx_enabled eusart_9bit_reception eusart_rx_interrupt_enabled eusart_rx_reserved Int_Rx_Handler_Var ]
+"114
+[; ;./MCAL_Layer/EUSART/hal_eusart.h: 114: typedef struct{
+[s S294 `uc 1 `ui 1 `E3547 1 `*S292 1 `*S293 1 ]
+[n S294 . mode_of_operation baudrate_value baudrate_cfg eusart_tx_cfg eusart_rx_cfg ]
 [p mainexit ]
-"75 ./ECU_Layer/Chr_LCD/ecu_chr_lcd.h
-[; ;./ECU_Layer/Chr_LCD/ecu_chr_lcd.h: 75: STD_ReturnType lcd_8bit_initialize(const chr_lcd_8bit_t *lcd);
-[v _lcd_8bit_initialize `(uc ~T0 @X0 0 ef1`*CS281 ]
-"85 ./MCAL_Layer/CCP1/hal_ccp1.h
-[; ;./MCAL_Layer/CCP1/hal_ccp1.h: 85: STD_ReturnType hal_ccp_init(const ccp_t* ccpobj);
-[v _hal_ccp_init `(uc ~T0 @X0 0 ef1`*CS291 ]
-"78 ./MCAL_Layer/ADC/../../MCAL_Layer/GPIO/hal_gpio.h
-[v _gpio_pin_direction_initialize `(uc ~T0 @X0 0 ef1`*CS272 ]
-"82 ./MCAL_Layer/Timer1/hal_timer1.h
-[; ;./MCAL_Layer/Timer1/hal_timer1.h: 82: STD_ReturnType hal_timer1_initialize(const timer1_t* timer1);
-[v _hal_timer1_initialize `(uc ~T0 @X0 0 ef1`*CS286 ]
-"3536 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4620.h
-[s S131 :2 `uc 1 :1 `uc 1 ]
-[n S131 . . NOT_T3SYNC ]
-"3540
-[s S132 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S132 . TMR3ON TMR3CS nT3SYNC T3CCP1 T3CKPS T3CCP2 RD16 ]
-"3549
-[s S133 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S133 . . T3SYNC . T3CKPS0 T3CKPS1 ]
-"3556
-[s S134 :3 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
-[n S134 . . SOSCEN3 . RD163 ]
-"3562
-[s S135 :7 `uc 1 :1 `uc 1 ]
-[n S135 . . T3RD16 ]
-"3535
-[u S130 `S131 1 `S132 1 `S133 1 `S134 1 `S135 1 ]
-[n S130 . . . . . . ]
-"3567
-[v _T3CONbits `VS130 ~T0 @X0 0 e@4017 ]
-"79 ./ECU_Layer/Chr_LCD/ecu_chr_lcd.h
-[; ;./ECU_Layer/Chr_LCD/ecu_chr_lcd.h: 79: STD_ReturnType lcd_8bit_send_string(const chr_lcd_8bit_t *lcd,uint8 *str);
-[v _lcd_8bit_send_string `(uc ~T0 @X0 0 ef2`*CS281`*uc ]
-"77
-[; ;./ECU_Layer/Chr_LCD/ecu_chr_lcd.h: 77: STD_ReturnType lcd_8bit_send_char_data(const chr_lcd_8bit_t *lcd,uint8 data);
-[v _lcd_8bit_send_char_data `(uc ~T0 @X0 0 ef2`*CS281`uc ]
-"85
-[; ;./ECU_Layer/Chr_LCD/ecu_chr_lcd.h: 85: STD_ReturnType convert_byte_to_string(uint8 value,uint8 *str);
-[v _convert_byte_to_string `(uc ~T0 @X0 0 ef2`uc`*uc ]
-"80
-[; ;./ECU_Layer/Chr_LCD/ecu_chr_lcd.h: 80: STD_ReturnType lcd_8bit_send_string_pos(const chr_lcd_8bit_t *lcd,uint8 row,uint8 column,uint8 *str);
-[v _lcd_8bit_send_string_pos `(uc ~T0 @X0 0 ef4`*CS281`uc`uc`*uc ]
+"122
+[; ;./MCAL_Layer/EUSART/hal_eusart.h: 122: STD_ReturnType mcal_eusart_asynchronous_init(const eusart_t *eusart_obj);
+[v _mcal_eusart_asynchronous_init `(uc ~T0 @X0 0 ef1`*CS294 ]
+"129
+[; ;./MCAL_Layer/EUSART/hal_eusart.h: 129: STD_ReturnType mcal_eusart_send_string_blocking(uint8 *str , uint8 str_length);
+[v _mcal_eusart_send_string_blocking `(uc ~T0 @X0 0 ef2`*uc`uc ]
+[v F2768 `(v ~T0 @X0 1 tf1`ul ]
+"12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\builtins.h
+[v __delay `JF2768 ~T0 @X0 0 e ]
+[p i __delay ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4620.h
 [; <" PORTA equ 0F80h ;# ">
 "192
@@ -367,323 +303,66 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 0FFEh ;# ">
 "6716
 [; <" TOSU equ 0FFFh ;# ">
-"42 application.c
-[; ;application.c: 42: volatile uint16_t ovf = 0;
-[v _ovf `Vus ~T0 @X0 1 e ]
-[i _ovf
--> -> 0 `i `us
-]
-"43
-[; ;application.c: 43: volatile uint16_t last_ovf = 0;
-[v _last_ovf `Vus ~T0 @X0 1 e ]
-[i _last_ovf
--> -> 0 `i `us
-]
-"44
-[; ;application.c: 44: volatile uint16_t start = 0;
-[v _start `Vus ~T0 @X0 1 e ]
-[i _start
--> -> 0 `i `us
-]
-"45
-[; ;application.c: 45: volatile uint16_t end = 0;
-[v _end `Vus ~T0 @X0 1 e ]
-[i _end
--> -> 0 `i `us
-]
-"46
-[; ;application.c: 46: volatile uint8_t st_en_flag = 0;
-[v _st_en_flag `Vuc ~T0 @X0 1 e ]
-[i _st_en_flag
--> -> 0 `i `uc
-]
-"47
-[; ;application.c: 47: volatile uint8_t second_edge_flag = 0;
-[v _second_edge_flag `Vuc ~T0 @X0 1 e ]
-[i _second_edge_flag
--> -> 0 `i `uc
-]
-"48
-[; ;application.c: 48: volatile uint32_t period = 0;
-[v _period `Vul ~T0 @X0 1 e ]
-[i _period
--> -> -> 0 `i `l `ul
-]
-"49
-[; ;application.c: 49: volatile uint32_t freq = 0;
-[v _freq `Vul ~T0 @X0 1 e ]
-[i _freq
--> -> -> 0 `i `l `ul
-]
-"52
-[; ;application.c: 52: chr_lcd_8bit_t lcd8bit = {
-[v _lcd8bit `S281 ~T0 @X0 1 e ]
-[i _lcd8bit
+"19 application.c
+[; ;application.c: 19: eusart_tx_t eusartTX = {
+[v _eusartTX `S292 ~T0 @X0 1 e ]
+[i _eusartTX
 :U ..
 :U ..
-:U ..
-:U ..
--> . `E2818 3 `uc
--> . `E2808 0 `uc
--> . `E2804 0 `uc
--> . `E2800 0 `uc
-..
-..
-:U ..
-:U ..
--> . `E2818 3 `uc
--> . `E2808 1 `uc
--> . `E2804 0 `uc
--> . `E2800 0 `uc
-..
-..
-:U ..
-:U ..
--> . `E2818 1 `uc
--> . `E2808 0 `uc
--> . `E2804 0 `uc
--> . `E2800 0 `uc
-..
-:U ..
--> . `E2818 1 `uc
--> . `E2808 1 `uc
--> . `E2804 0 `uc
--> . `E2800 0 `uc
-..
-:U ..
--> . `E2818 1 `uc
--> . `E2808 2 `uc
--> . `E2804 0 `uc
--> . `E2800 0 `uc
-..
-:U ..
--> . `E2818 1 `uc
--> . `E2808 3 `uc
--> . `E2804 0 `uc
--> . `E2800 0 `uc
-..
-:U ..
--> . `E2818 1 `uc
--> . `E2808 4 `uc
--> . `E2804 0 `uc
--> . `E2800 0 `uc
-..
-:U ..
--> . `E2818 1 `uc
--> . `E2808 5 `uc
--> . `E2804 0 `uc
--> . `E2800 0 `uc
-..
-:U ..
--> . `E2818 1 `uc
--> . `E2808 6 `uc
--> . `E2804 0 `uc
--> . `E2800 0 `uc
-..
-:U ..
--> . `E2818 1 `uc
--> . `E2808 7 `uc
--> . `E2804 0 `uc
--> . `E2800 0 `uc
-..
-..
-..
-..
-]
-"104
-[; ;application.c: 104: Pin_Config_t ccp1_pin = {
-[v _ccp1_pin `S272 ~T0 @X0 1 e ]
-[i _ccp1_pin
-:U ..
-:U ..
--> . `E2818 2 `uc
--> . `E2808 2 `uc
--> . `E2804 1 `uc
-..
-..
-]
-"110
-[; ;application.c: 110: ccp_t ccp1obj = {
-[v _ccp1obj `S291 ~T0 @X0 1 e ]
-[i _ccp1obj
-:U ..
-:U ..
-&U _ccp1_app_isr
--> -> 0 `i `*F3561
 -> -> 1 `i `uc
 -> -> 0 `i `uc
 -> -> 0 `i `uc
-. `E3496 1
--> -> 5 `i `uc
+-> -> 0 `i `uc
+-> -> -> 0 `i `*v `*F3598
 ..
 ..
 ]
-"118
-[; ;application.c: 118: timer1_t tmr1 = {
-[v _tmr1 `S286 ~T0 @X0 1 e ]
-[i _tmr1
+"27
+[; ;application.c: 27: eusart_t eusart = {
+[v _eusart `S294 ~T0 @X0 1 e ]
+[i _eusart
 :U ..
 :U ..
-&U _timer1_app_isr
--> -> 1 `i `uc
--> -> 0 `i `us
 -> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 1 `i `uc
+-> -> 9600 `i `ui
+. `E3547 1
+&U _eusartTX
+-> -> -> 0 `i `*v `*S293
 ..
 ..
 ]
-"131
-[; ;application.c: 131: void ccp1_app_isr(){
-[v _ccp1_app_isr `(v ~T0 @X0 1 ef ]
-{
-[e :U _ccp1_app_isr ]
-[f ]
-"132
-[; ;application.c: 132:     second_edge_flag++;
-[e ++ _second_edge_flag -> -> 1 `i `Vuc ]
-"133
-[; ;application.c: 133:     if(st_en_flag == 0){
-[e $ ! == -> _st_en_flag `i -> 0 `i 293  ]
-{
-"134
-[; ;application.c: 134:         TMR1 = 0;
-[e = _TMR1 -> -> 0 `i `us ]
-"135
-[; ;application.c: 135:         start = 0;
-[e = _start -> -> 0 `i `us ]
-"136
-[; ;application.c: 136:         hal_timer1_enable(&tmr1);
-[e ( _hal_timer1_enable (1 -> &U _tmr1 `*CS286 ]
-"137
-[; ;application.c: 137:     }
-}
-[e $U 294  ]
-"138
-[; ;application.c: 138:     else if(st_en_flag == 1){
-[e :U 293 ]
-[e $ ! == -> _st_en_flag `i -> 1 `i 295  ]
-{
-"139
-[; ;application.c: 139:         last_ovf = ovf;
-[e = _last_ovf _ovf ]
-"140
-[; ;application.c: 140:         ovf = 0;
-[e = _ovf -> -> 0 `i `us ]
-"141
-[; ;application.c: 141:         hal_ccp_readCaptureValue(&ccp1obj,&end);
-[e ( _hal_ccp_readCaptureValue (2 , -> &U _ccp1obj `*CS291 -> &U _end `*us ]
-"142
-[; ;application.c: 142:         hal_timer1_disable(&tmr1);
-[e ( _hal_timer1_disable (1 -> &U _tmr1 `*CS286 ]
-"143
-[; ;application.c: 143:     }
-}
-[e :U 295 ]
-[e :U 294 ]
-"144
-[; ;application.c: 144:     st_en_flag ^= 1;
-[e =^ _st_en_flag -> -> 1 `i `Vuc ]
-"145
-[; ;application.c: 145: }
-[e :UE 292 ]
-}
-"146
-[; ;application.c: 146: void timer1_app_isr(){
-[v _timer1_app_isr `(v ~T0 @X0 1 ef ]
-{
-[e :U _timer1_app_isr ]
-[f ]
-"147
-[; ;application.c: 147:     ovf++;
-[e ++ _ovf -> -> 1 `i `Vus ]
-"148
-[; ;application.c: 148: }
-[e :UE 296 ]
-}
 [v $root$_main `(v ~T0 @X0 0 e ]
-"149
-[; ;application.c: 149: int main(void){
+"36
+[; ;application.c: 36: int main(void){
 [v _main `(i ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"152
-[; ;application.c: 152:     lcd_8bit_initialize(&lcd8bit);
-[e ( _lcd_8bit_initialize (1 -> &U _lcd8bit `*CS281 ]
-"153
-[; ;application.c: 153:     hal_ccp_init(&ccp1obj);
-[e ( _hal_ccp_init (1 -> &U _ccp1obj `*CS291 ]
-"154
-[; ;application.c: 154:     gpio_pin_direction_initialize(&ccp1_pin);
-[e ( _gpio_pin_direction_initialize (1 -> &U _ccp1_pin `*CS272 ]
-"155
-[; ;application.c: 155:     hal_timer1_initialize(&tmr1);
-[e ( _hal_timer1_initialize (1 -> &U _tmr1 `*CS286 ]
-"157
-[; ;application.c: 157:     T3CONbits.T3CCP2 = 0;
-[e = . . _T3CONbits 1 5 -> -> 0 `i `uc ]
-"158
-[; ;application.c: 158:     T3CONbits.T3CCP1 = 0;
-[e = . . _T3CONbits 1 3 -> -> 0 `i `uc ]
-[v F3567 `uc ~T0 @X0 -> 4 `i s ]
-[i F3567
-:U ..
-"160
-[; ;application.c: 160:     char arr[4]={0};
--> -> 0 `i `uc
-..
-]
-[v _arr `uc ~T0 @X0 -> 4 `i a ]
-[e = _arr F3567 ]
-"161
-[; ;application.c: 161:     lcd_8bit_send_string(&lcd8bit,"Frequency");
-[e ( _lcd_8bit_send_string (2 , -> &U _lcd8bit `*CS281 :s 1C ]
-"162
-[; ;application.c: 162:     lcd_8bit_send_char_data(&lcd8bit,'=');
-[e ( _lcd_8bit_send_char_data (2 , -> &U _lcd8bit `*CS281 -> -> 61 `ui `uc ]
-"163
-[; ;application.c: 163:     while(1){
-[e :U 299 ]
+"37
+[; ;application.c: 37:     mcal_eusart_asynchronous_init(&eusart);
+[e ( _mcal_eusart_asynchronous_init (1 -> &U _eusart `*CS294 ]
+"39
+[; ;application.c: 39:     while(1){
+[e :U 297 ]
 {
-"164
-[; ;application.c: 164:         if(second_edge_flag == 2){
-[e $ ! == -> _second_edge_flag `i -> 2 `i 301  ]
-{
-"165
-[; ;application.c: 165:             period = end + (last_ovf * 65536);
-[e = _period -> + -> _end `l * -> _last_ovf `l -> 65536 `l `ul ]
-"166
-[; ;application.c: 166:             freq = (uint32_t)(1 / (period / 1000000.0));
-[e = _freq -> / -> -> 1 `i `d / -> _period `d .1000000.0 `ul ]
-"167
-[; ;application.c: 167:             second_edge_flag = 0;
-[e = _second_edge_flag -> -> 0 `i `uc ]
-"168
-[; ;application.c: 168:         }
+"41
+[; ;application.c: 41:         mcal_eusart_send_string_blocking("I Love you Sama\r",16);
+[e ( _mcal_eusart_send_string_blocking (2 , :s 1C -> -> 16 `i `uc ]
+"42
+[; ;application.c: 42:         _delay((unsigned long)((1000)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"44
+[; ;application.c: 44:     }
 }
-[e :U 301 ]
-"170
-[; ;application.c: 170:         convert_byte_to_string(freq,arr);
-[e ( _convert_byte_to_string (2 , -> _freq `uc -> &U _arr `*uc ]
-"171
-[; ;application.c: 171:         lcd_8bit_send_string_pos(&lcd8bit,1,11,arr);
-[e ( _lcd_8bit_send_string_pos (4 , , , -> &U _lcd8bit `*CS281 -> -> 1 `i `uc -> -> 11 `i `uc -> &U _arr `*uc ]
-"174
-[; ;application.c: 174:     }
-}
+[e :U 296 ]
+[e $U 297  ]
 [e :U 298 ]
-[e $U 299  ]
-[e :U 300 ]
-"179
-[; ;application.c: 179:     return (0);
+"49
+[; ;application.c: 49:     return (0);
 [e ) -> 0 `i ]
-[e $UE 297  ]
-"180
-[; ;application.c: 180: }
-[e :UE 297 ]
+[e $UE 295  ]
+"50
+[; ;application.c: 50: }
+[e :UE 295 ]
 }
-[a 1C 70 114 101 113 117 101 110 99 121 0 ]
+[a 1C 73 32 76 111 118 101 32 121 111 117 32 83 97 109 97 13 0 ]

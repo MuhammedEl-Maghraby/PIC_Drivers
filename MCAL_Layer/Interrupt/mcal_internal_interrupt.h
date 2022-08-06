@@ -40,6 +40,9 @@
 
 #define CCP2_Interrupt_Enable()             (PIE2bits.CCP2IE = 1)
 #define CCP2_Clear_Interrupt_Flag()         (PIR2bits.CCP2IF = 0)
+
+#define EUSART_Transmitter_Interrupt_Enable()           (PIE1bits.TXIE = 1)
+#define EUSART_Receiver_Interrupt_Enable()              (PIE1bits.RCIE   = 1)
 #endif
 
 #define ADC_Interrupt_Disable()              (PIE1bits.ADIE = 0)
@@ -49,7 +52,8 @@
 #define Timer3_Interrupt_Disable()           (PIE2bits.TMR3IE = 0)
 #define CCP1_Interrupt_Disable()             (PIE1bits.CCP1IE = 0)
 #define CCP2_Interrupt_Disable()             (PIE2bits.CCP2IE = 0)
-
+#define EUSART_Transmitter_Interrupt_Disable()        (PIE1bits.TXIE   = 0)
+#define EUSART_Receiver_Interrupt_Disable()           (PIE1bits.RCIE   = 0)
 
 #define CCP1_Clear_Interrupt_Flag()         (PIR1bits.CCP1IF = 0)
 #define CCP2_Clear_Interrupt_Flag()         (PIR2bits.CCP2IF = 0)
@@ -74,6 +78,13 @@
 
 #define CCP2_High_Priority_Set()            (IPR2bits.CCP2IP = 1)
 #define CCP2_Low_Priority_Set()             (IPR2bits.CCP2IP = 0)
+
+#define EUSART_Transmitter_High_Priority_Set()          (IPR1bits.TXIP = 1)
+#define EUSART_Transmitter_Low_Priority_Set()          (IPR1bits.TXIP  = 0)
+
+#define EUSART_Receiver_High_Priority_Set()          (IPR1bits.RCIP = 1)
+#define EUSART_Receiver_Low_Priority_Set()          (IPR1bits.RCIP  = 0)
+
 #endif
 
 

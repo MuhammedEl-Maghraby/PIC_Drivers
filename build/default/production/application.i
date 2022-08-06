@@ -5023,7 +5023,7 @@ void application_initialize(void);
 # 1 "./MCAL_Layer/EEPROM/hal_eeprom.h" 1
 # 13 "./MCAL_Layer/EEPROM/hal_eeprom.h"
 # 1 "./MCAL_Layer/EEPROM/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h" 1
-# 86 "./MCAL_Layer/EEPROM/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
+# 97 "./MCAL_Layer/EEPROM/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
 void ADC_ISR(void);
 void Timer0_ISR(void);
 void Timer1_ISR(void);
@@ -5364,138 +5364,82 @@ STD_ReturnType hal_ccp_setPWMDuty(const ccp_t* ccpobj,const uint8_t duty);
 STD_ReturnType hal_ccp_PWMStart(const ccp_t* ccpobj);
 STD_ReturnType hal_ccp_PWMStop(const ccp_t* ccpobj);
 # 15 "application.c" 2
-# 42 "application.c"
-volatile uint16_t ovf = 0;
-volatile uint16_t last_ovf = 0;
-volatile uint16_t start = 0;
-volatile uint16_t end = 0;
-volatile uint8_t st_en_flag = 0;
-volatile uint8_t second_edge_flag = 0;
-volatile uint32_t period = 0;
-volatile uint32_t freq = 0;
-void timer1_app_isr(void);
-void ccp1_app_isr(void);
-chr_lcd_8bit_t lcd8bit = {
-    .lcd_rs.direction = OUTPUT,
-    .lcd_rs.logic = LOW,
-    .lcd_rs.pin = PIN0,
-    .lcd_rs.port = PORTD_INDEX,
 
-    .lcd_en.direction = OUTPUT,
-    .lcd_en.logic = LOW ,
-    .lcd_en.pin = PIN1,
-    .lcd_en.port = PORTD_INDEX,
+# 1 "./MCAL_Layer/EUSART/hal_eusart.h" 1
+# 86 "./MCAL_Layer/EUSART/hal_eusart.h"
+typedef enum{
+    EUSART_Asynchronous_8bit_LowSpeed = 0,
+    EUSART_Asynchronous_8bit_HighSpeed,
+    EUSART_Asynchronous_16bit_LowSpeed,
+    EUSART_Asynchronous_16bit_HighSpeed,
+    EUSART_Synchronous_8bit,
+    EUSART_Synchronous_16bit
+}baudrate_cfg_bits_t;
 
-    .lcd_data[0].direction = OUTPUT,
-    .lcd_data[0].port = PORTB_INDEX,
-    .lcd_data[0].pin = PIN0,
-    .lcd_data[0].logic = LOW,
 
-    .lcd_data[1].direction = OUTPUT,
-    .lcd_data[1].port = PORTB_INDEX,
-    .lcd_data[1].pin = PIN1,
-    .lcd_data[1].logic = LOW,
+typedef struct{
+    uint8 eusart_tx_enabled :1;
+    uint8 eusart_9bit_transmission :1;
+    uint8 eusart_tx_interrupt_enabled :1;
+    uint8 eusart_tx_reserved :5;
+    void (*Int_Tx_Handler_Var)(void);
+}eusart_tx_t;
 
-    .lcd_data[2].direction = OUTPUT,
-    .lcd_data[2].port = PORTB_INDEX,
-    .lcd_data[2].pin = PIN2,
-    .lcd_data[2].logic = LOW,
 
-    .lcd_data[3].direction = OUTPUT,
-    .lcd_data[3].port = PORTB_INDEX,
-    .lcd_data[3].pin = PIN3,
-    .lcd_data[3].logic = LOW,
 
-    .lcd_data[4].direction = OUTPUT,
-    .lcd_data[4].port = PORTB_INDEX,
-    .lcd_data[4].pin = PIN4,
-    .lcd_data[4].logic = LOW,
+typedef struct{
+    uint8 eusart_rx_enabled :1;
+    uint8 eusart_9bit_reception :1;
+    uint8 eusart_rx_interrupt_enabled :1;
+    uint8 eusart_rx_reserved :5;
+    void (*Int_Rx_Handler_Var)(void);
+}eusart_rx_t;
 
-    .lcd_data[5].direction = OUTPUT,
-    .lcd_data[5].port = PORTB_INDEX,
-    .lcd_data[5].pin = PIN5,
-    .lcd_data[5].logic = LOW,
+typedef struct{
+    uint8 mode_of_operation;
+    uint32 baudrate_value;
+    baudrate_cfg_bits_t baudrate_cfg;
+    eusart_tx_t *eusart_tx_cfg;
+    eusart_rx_t *eusart_rx_cfg;
+}eusart_t;
 
-    .lcd_data[6].direction = OUTPUT,
-    .lcd_data[6].port = PORTB_INDEX,
-    .lcd_data[6].pin = PIN6,
-    .lcd_data[6].logic = LOW,
+STD_ReturnType mcal_eusart_asynchronous_init(const eusart_t *eusart_obj);
+STD_ReturnType mcal_eusart_synchronous_init(const eusart_t *eusart_obj);
+STD_ReturnType mcal_eusart_deinit(void);
+STD_ReturnType mcal_eusart_send_byte_blocking(uint8 data);
+STD_ReturnType mcal_eusart_send_byte_non_blocking(uint8 data);
+STD_ReturnType mcal_eusart_receive_byte_blocking(uint8 *data);
+STD_ReturnType mcal_eusart_receive_byte_non_blocking(uint8 *data);
+STD_ReturnType mcal_eusart_send_string_blocking(uint8 *str , uint8 str_length);
+STD_ReturnType mcal_eusart_send_string_non_blocking(uint8 *str , uint8 str_length);
+# 16 "application.c" 2
 
-    .lcd_data[7].direction = OUTPUT,
-    .lcd_data[7].port = PORTB_INDEX,
-    .lcd_data[7].pin = PIN7,
-    .lcd_data[7].logic = LOW,
+
+
+eusart_tx_t eusartTX = {
+  .Int_Tx_Handler_Var = ((void*)0),
+  .eusart_tx_enabled = 1,
+  .eusart_9bit_transmission = 0,
+  .eusart_tx_interrupt_enabled = 0
+
 };
 
-Pin_Config_t ccp1_pin = {
-    .direction = INPUT,
-    .pin = PIN2,
-    .port = PORTC_INDEX
-};
-
-ccp_t ccp1obj = {
-    .CCP1_Handler = ccp1_app_isr,
-    .ccp1_interrupt_priority_level = 1,
-    .ccp_mode = CCP_CAPTURE_MODE_,
-    .ccp_submode = ((uint8_t)5) ,
-    .cpp_instance = ((uint8_t)0),
-};
-
-timer1_t tmr1 = {
-
-    .TMR1_Handler = timer1_app_isr,
-    .timer1_interrupt_priority_level = 1,
-    .timer1_preload_value = 0,
-    .timer1_mode = 0,
-    .timer1_clock_source = 0,
-    .timer1_prescaler = 0,
-    .timer1_rw_mode = 1
+eusart_t eusart = {
+    .baudrate_cfg = EUSART_Asynchronous_8bit_HighSpeed,
+    .baudrate_value = 9600,
+    .mode_of_operation = 0,
+    .eusart_tx_cfg = &eusartTX,
+    .eusart_rx_cfg = ((void*)0)
 };
 
 
-
-void ccp1_app_isr(){
-    second_edge_flag++;
-    if(st_en_flag == 0){
-        TMR1 = 0;
-        start = 0;
-        hal_timer1_enable(&tmr1);
-    }
-    else if(st_en_flag == 1){
-        last_ovf = ovf;
-        ovf = 0;
-        hal_ccp_readCaptureValue(&ccp1obj,&end);
-        hal_timer1_disable(&tmr1);
-    }
-    st_en_flag ^= 1;
-}
-void timer1_app_isr(){
-    ovf++;
-}
 int main(void){
+    mcal_eusart_asynchronous_init(&eusart);
 
-
-    lcd_8bit_initialize(&lcd8bit);
-    hal_ccp_init(&ccp1obj);
-    gpio_pin_direction_initialize(&ccp1_pin);
-    hal_timer1_initialize(&tmr1);
-
-    T3CONbits.T3CCP2 = 0;
-    T3CONbits.T3CCP1 = 0;
-
-    char arr[4]={0};
-    lcd_8bit_send_string(&lcd8bit,"Frequency");
-    lcd_8bit_send_char_data(&lcd8bit,'=');
     while(1){
-        if(second_edge_flag == 2){
-            period = end + (last_ovf * 65536);
-            freq = (uint32_t)(1 / (period / 1000000.0));
-            second_edge_flag = 0;
-        }
 
-        convert_byte_to_string(freq,arr);
-        lcd_8bit_send_string_pos(&lcd8bit,1,11,arr);
-
+        mcal_eusart_send_string_blocking("I Love you Sama\r",16);
+        _delay((unsigned long)((1000)*(8000000/4000.0)));
 
     }
 

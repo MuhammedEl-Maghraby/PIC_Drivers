@@ -4779,7 +4779,7 @@ void RB7_ISR(uint8_t source);
 # 14 "MCAL_Layer/Interrupt/mcal_interrupt_manager.h" 2
 
 # 1 "MCAL_Layer/Interrupt/mcal_internal_interrupt.h" 1
-# 86 "MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
+# 97 "MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
 void ADC_ISR(void);
 void Timer0_ISR(void);
 void Timer1_ISR(void);
