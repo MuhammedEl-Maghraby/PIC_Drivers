@@ -70,8 +70,8 @@
 #define EUSART_Receiver_Enabled()     (RCSTAbits.CREN = EUSART_RX_ENABLED)
 #define EUSART_Receiver_Disabled()    (RCSTAbits.CREN = EUSART_RX_DISABLED)
 
-#define EUSART_Receiver_9bit_Transmission_Enabled()      (RCSTAbits.RX9 = EUSART_RX_9BIT_SELECTED)
-#define EUSART_Receiver_9bit_Transmission_Disabled()     (RCSTAbits.RX9 = EUSART_RX_9BIT_NOT_SELECTED)
+#define EUSART_Receiver_9bit_Reception_Enabled()      (RCSTAbits.RX9 = EUSART_RX_9BIT_SELECTED)
+#define EUSART_Receiver_9bit_Reception_Disabled()     (RCSTAbits.RX9 = EUSART_RX_9BIT_NOT_SELECTED)
 
 #define EUSART_BaudRate_Generator_16Bit_Select()  (BAUDCONbits.BRG16 = EUSART_BAUDRATE_GENERATOR_16BIT_SELECTED)
 #define EUSART_BaudRate_Generator_8Bit_Select()   (BAUDCONbits.BRG16 = EUSART_BAUDRATE_GENERATOR_8BIT_SELECTED)
@@ -99,6 +99,7 @@ typedef struct{
     uint8  eusart_tx_interrupt_enabled :1;
     uint8  eusart_tx_reserved          :5;
     void   (*Int_Tx_Handler_Var)(void);
+    interrupt_priority_cfg eusart_tx_priority;
 }eusart_tx_t;
 
 
@@ -108,7 +109,8 @@ typedef struct{
     uint8  eusart_9bit_reception       :1;  
     uint8  eusart_rx_interrupt_enabled :1;
     uint8  eusart_rx_reserved          :5;
-    void   (*Int_Rx_Handler_Var)(void);        
+    void   (*Int_Rx_Handler_Var)(void); 
+    interrupt_priority_cfg eusart_rx_priority;
 }eusart_rx_t;
 
 typedef struct{
@@ -127,6 +129,11 @@ STD_ReturnType mcal_eusart_send_byte_non_blocking(uint8 data);
 STD_ReturnType mcal_eusart_receive_byte_blocking(uint8 *data);
 STD_ReturnType mcal_eusart_receive_byte_non_blocking(uint8  *data);
 STD_ReturnType mcal_eusart_send_string_blocking(uint8 *str , uint8 str_length);
-STD_ReturnType mcal_eusart_send_string_non_blocking(uint8 *str , uint8 str_length);
+//STD_ReturnType mcal_eusart_send_string_non_blocking(uint8 *str , uint8 str_length);
+
+STD_ReturnType mcal_eusart_send_string_non_blocking(void);
+
+STD_ReturnType mcal_eusart_receive_string_blocking(uint8 *str , uint8 str_length);
+STD_ReturnType mcal_eusart_receive_string_non_blocking(uint8 *str , uint8 str_length);
 #endif	/* HAL_EUSART_H */
 

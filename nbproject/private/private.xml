@@ -3,11 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Embedded%20Systems/Embedded%20Projects%20Ahmed%20Abdelghafar%20course/MCAL_Layer/Interrupt/mcal_internal_interrupt.h</file>
+            <file>file:/D:/Embedded%20Systems/Embedded%20Projects%20Ahmed%20Abdelghafar%20course/MCAL_Layer/GPIO/hal_gpio.h</file>
+            <file>file:/D:/Embedded%20Systems/Embedded%20Projects%20Ahmed%20Abdelghafar%20course/MCAL_Layer/SPI/hal_spi.h</file>
             <file>file:/D:/Embedded%20Systems/Embedded%20Projects%20Ahmed%20Abdelghafar%20course/application.c</file>
-            <file>file:/D:/Embedded%20Systems/Embedded%20Projects%20Ahmed%20Abdelghafar%20course/MCAL_Layer/EUSART/hal_eusart.h</file>
-            <file>file:/D:/Embedded%20Systems/Embedded%20Projects%20Ahmed%20Abdelghafar%20course/MCAL_Layer/CCP1/hal_ccp1.h</file>
-            <file>file:/D:/Embedded%20Systems/Embedded%20Projects%20Ahmed%20Abdelghafar%20course/MCAL_Layer/EUSART/hal_eusart.c</file>
+            <file>file:/D:/Embedded%20Systems/Embedded%20Projects%20Ahmed%20Abdelghafar%20course/MCAL_Layer/SPI/hal_spi.c</file>
+            <file>file:/D:/Embedded%20Systems/Embedded%20Projects%20Ahmed%20Abdelghafar%20course/MCAL_Layer/GPIO/hal_gpio.c</file>
         </group>
     </open-files>
 </project-private>

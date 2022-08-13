@@ -43,6 +43,7 @@
 
 #define EUSART_Transmitter_Interrupt_Enable()           (PIE1bits.TXIE = 1)
 #define EUSART_Receiver_Interrupt_Enable()              (PIE1bits.RCIE   = 1)
+
 #endif
 
 #define ADC_Interrupt_Disable()              (PIE1bits.ADIE = 0)
@@ -101,5 +102,8 @@ void Timer2_ISR(void);
 void Timer3_ISR(void);
 void CCP1_ISR(void);
 void CCP2_ISR(void);
+void EUSART_TX_Isr(void);
+void EUSART_RX_Isr(void);
+
 #endif	/* MCAL_INTERNAL_INTERRUPT_H */
 

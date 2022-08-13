@@ -1,22 +1,22 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F2939 `(v ~T0 @X0 0 tf ]
-[v F2940 `(v ~T0 @X0 0 tf ]
-[v F2899 `(v ~T0 @X0 0 tf ]
+[v F2941 `(v ~T0 @X0 0 tf ]
+[v F2942 `(v ~T0 @X0 0 tf ]
+[v F2901 `(v ~T0 @X0 0 tf ]
 "24 MCAL_Layer/Timer0/hal_timer0.c
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 24: STD_ReturnType hal_timer0_initialize(const timer0_t* timer0){
-[c E2893 0 1 .. ]
-[n E2893 . TIMER0_TIMER_MODE TIMER0_COUNTER_MODE  ]
-[c E2889 0 1 .. ]
-[n E2889 . TIMER0_REGISTER_16BIT TIMER0_REGISTER_8BIT  ]
-[c E2885 0 1 .. ]
-[n E2885 . TIMER0_CLOCK_SOURCE_INTERNAL TIMER0_CLOCK_SOURCE_EXTERNAL  ]
-[c E2881 0 1 .. ]
-[n E2881 . TIMER0_INCREMENT_ON_RISING_EDGE TIMER0_INCREMENT_ON_FALLING_EDGE  ]
-[c E2871 0 1 2 3 4 5 6 7 .. ]
-[n E2871 . TIMER0_PSF_DIV_BY_2 TIMER0_PSF_DIV_BY_4 TIMER0_PSF_DIV_BY_8 TIMER0_PSF_DIV_BY_16 TIMER0_PSF_DIV_BY_32 TIMER0_PSF_DIV_BY_64 TIMER0_PSF_DIV_BY_128 TIMER0_PSF_DIV_BY_256  ]
+[c E2895 0 1 .. ]
+[n E2895 . TIMER0_TIMER_MODE TIMER0_COUNTER_MODE  ]
+[c E2891 0 1 .. ]
+[n E2891 . TIMER0_REGISTER_16BIT TIMER0_REGISTER_8BIT  ]
+[c E2887 0 1 .. ]
+[n E2887 . TIMER0_CLOCK_SOURCE_INTERNAL TIMER0_CLOCK_SOURCE_EXTERNAL  ]
+[c E2883 0 1 .. ]
+[n E2883 . TIMER0_INCREMENT_ON_RISING_EDGE TIMER0_INCREMENT_ON_FALLING_EDGE  ]
+[c E2873 0 1 2 3 4 5 6 7 .. ]
+[n E2873 . TIMER0_PSF_DIV_BY_2 TIMER0_PSF_DIV_BY_4 TIMER0_PSF_DIV_BY_8 TIMER0_PSF_DIV_BY_16 TIMER0_PSF_DIV_BY_32 TIMER0_PSF_DIV_BY_64 TIMER0_PSF_DIV_BY_128 TIMER0_PSF_DIV_BY_256  ]
 "92 MCAL_Layer/Timer0/hal_timer0.h
 [; ;MCAL_Layer/Timer0/hal_timer0.h: 92: typedef struct{
-[s S273 `*F2899 1 `E2893 1 `E2889 1 `E2885 1 `E2881 1 `uc 1 `E2871 1 `us 1 ]
+[s S273 `*F2901 1 `E2895 1 `E2891 1 `E2887 1 `E2883 1 `uc 1 `E2873 1 `us 1 ]
 [n S273 . TMR0_Handler mode register_size clocksrc edge_incr prescaler_enable_bit prescaler_value preloaded_value ]
 "5863 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4620.h
 [s S245 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -51,10 +51,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _TMR0H `Vuc ~T0 @X0 0 e@4055 ]
 "5941
 [v _TMR0L `Vuc ~T0 @X0 0 e@4054 ]
-[v F2942 `(uc ~T0 @X0 1 tf1`*CS273 ]
+[v F2944 `(uc ~T0 @X0 1 tf1`*CS273 ]
 "13 MCAL_Layer/Timer0/hal_timer0.c
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 13: static __attribute__((inline)) STD_ReturnType hal_timer0_interrupt_handler_init(const timer0_t* timer0);
-[v _hal_timer0_interrupt_handler_init `TF2942 ~T0 @X0 0 s ]
+[v _hal_timer0_interrupt_handler_init `TF2944 ~T0 @X0 0 s ]
 "123 MCAL_Layer/Timer0/hal_timer0.h
 [; ;MCAL_Layer/Timer0/hal_timer0.h: 123: STD_ReturnType hal_timer0_interrupt_enable(const timer0_t* timer0);
 [v _hal_timer0_interrupt_enable `(uc ~T0 @X0 0 ef1`*CS273 ]
@@ -78,7 +78,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S257 . . . . ]
 "6407
 [v _INTCONbits `VS257 ~T0 @X0 0 e@4082 ]
-[v F2996 `(v ~T0 @X0 0 tf ]
+[v F2998 `(v ~T0 @X0 0 tf ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4620.h
 [; <" PORTA equ 0F80h ;# ">
 "192
@@ -355,9 +355,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSU equ 0FFFh ;# ">
 "12 MCAL_Layer/Timer0/hal_timer0.c
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 12: static void (*TMR0_InterruptHandler)(void) = ((void*)0);
-[v _TMR0_InterruptHandler `*F2939 ~T0 @X0 1 s ]
+[v _TMR0_InterruptHandler `*F2941 ~T0 @X0 1 s ]
 [i _TMR0_InterruptHandler
--> -> -> 0 `i `*v `*F2940
+-> -> -> 0 `i `*v `*F2942
 ]
 "24
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 24: STD_ReturnType hal_timer0_initialize(const timer0_t* timer0){
@@ -613,7 +613,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "139
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 139:         if(timer0->mode == TIMER0_TIMER_MODE && timer0->clocksrc == ((uint8_t)0)){
-[e $ ! && == -> . *U _timer0 1 `ui -> . `E2893 0 `ui == -> . *U _timer0 3 `ui -> -> -> 0 `i `uc `ui 292  ]
+[e $ ! && == -> . *U _timer0 1 `ui -> . `E2895 0 `ui == -> . *U _timer0 3 `ui -> -> -> 0 `i `uc `ui 292  ]
 {
 "140
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 140:             (T0CONbits.T0CS = 0);
@@ -625,7 +625,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "142
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 142:         else if(timer0->mode == TIMER0_COUNTER_MODE && timer0->clocksrc == ((uint8_t)1)){
 [e :U 292 ]
-[e $ ! && == -> . *U _timer0 1 `ui -> . `E2893 1 `ui == -> . *U _timer0 3 `ui -> -> -> 1 `i `uc `ui 294  ]
+[e $ ! && == -> . *U _timer0 1 `ui -> . `E2895 1 `ui == -> . *U _timer0 3 `ui -> -> -> 1 `i `uc `ui 294  ]
 {
 "143
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 143:             (T0CONbits.T0CS = 1);
@@ -762,7 +762,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "192
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 192:         if(timer0->register_size == TIMER0_REGISTER_8BIT){
-[e $ ! == -> . *U _timer0 2 `ui -> . `E2889 1 `ui 306  ]
+[e $ ! == -> . *U _timer0 2 `ui -> . `E2891 1 `ui 306  ]
 {
 "193
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 193:             (T0CONbits.T08BIT = 1);
@@ -774,7 +774,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "195
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 195:         else if(timer0->register_size == TIMER0_REGISTER_16BIT){
 [e :U 306 ]
-[e $ ! == -> . *U _timer0 2 `ui -> . `E2889 0 `ui 308  ]
+[e $ ! == -> . *U _timer0 2 `ui -> . `E2891 0 `ui 308  ]
 {
 "196
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 196:             (T0CONbits.T08BIT = 0);
@@ -962,7 +962,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 325 ]
 "262
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 262:                 (T0CONbits.T0PS = TIMER0_PSF_DIV_BY_2);
-[e = . . _T0CONbits 0 0 -> . `E2871 0 `uc ]
+[e = . . _T0CONbits 0 0 -> . `E2873 0 `uc ]
 "263
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 263:                 break;
 [e $U 323  ]
@@ -971,7 +971,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 326 ]
 "265
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 265:                 (T0CONbits.T0PS = TIMER0_PSF_DIV_BY_4);
-[e = . . _T0CONbits 0 0 -> . `E2871 1 `uc ]
+[e = . . _T0CONbits 0 0 -> . `E2873 1 `uc ]
 "266
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 266:                 break;
 [e $U 323  ]
@@ -980,7 +980,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 327 ]
 "268
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 268:                 (T0CONbits.T0PS = TIMER0_PSF_DIV_BY_8);
-[e = . . _T0CONbits 0 0 -> . `E2871 2 `uc ]
+[e = . . _T0CONbits 0 0 -> . `E2873 2 `uc ]
 "269
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 269:                 break;
 [e $U 323  ]
@@ -989,7 +989,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 328 ]
 "271
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 271:                 (T0CONbits.T0PS = TIMER0_PSF_DIV_BY_16);
-[e = . . _T0CONbits 0 0 -> . `E2871 3 `uc ]
+[e = . . _T0CONbits 0 0 -> . `E2873 3 `uc ]
 "272
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 272:                 break;
 [e $U 323  ]
@@ -998,7 +998,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 329 ]
 "274
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 274:                 (T0CONbits.T0PS = TIMER0_PSF_DIV_BY_32);
-[e = . . _T0CONbits 0 0 -> . `E2871 4 `uc ]
+[e = . . _T0CONbits 0 0 -> . `E2873 4 `uc ]
 "275
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 275:                 break;
 [e $U 323  ]
@@ -1007,7 +1007,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 330 ]
 "277
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 277:                 (T0CONbits.T0PS = TIMER0_PSF_DIV_BY_64);
-[e = . . _T0CONbits 0 0 -> . `E2871 5 `uc ]
+[e = . . _T0CONbits 0 0 -> . `E2873 5 `uc ]
 "278
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 278:                 break;
 [e $U 323  ]
@@ -1016,7 +1016,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 331 ]
 "280
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 280:                 (T0CONbits.T0PS = TIMER0_PSF_DIV_BY_128);
-[e = . . _T0CONbits 0 0 -> . `E2871 6 `uc ]
+[e = . . _T0CONbits 0 0 -> . `E2873 6 `uc ]
 "281
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 281:                 break;
 [e $U 323  ]
@@ -1025,7 +1025,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 332 ]
 "283
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 283:                 (T0CONbits.T0PS = TIMER0_PSF_DIV_BY_128);
-[e = . . _T0CONbits 0 0 -> . `E2871 6 `uc ]
+[e = . . _T0CONbits 0 0 -> . `E2873 6 `uc ]
 "284
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 284:                 break;
 [e $U 323  ]
@@ -1043,14 +1043,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 323  ]
 [e :U 324 ]
-[e [\ -> . *U _timer0 6 `ui , $ -> . `E2871 0 `ui 325
- , $ -> . `E2871 1 `ui 326
- , $ -> . `E2871 2 `ui 327
- , $ -> . `E2871 3 `ui 328
- , $ -> . `E2871 4 `ui 329
- , $ -> . `E2871 5 `ui 330
- , $ -> . `E2871 6 `ui 331
- , $ -> . `E2871 7 `ui 332
+[e [\ -> . *U _timer0 6 `ui , $ -> . `E2873 0 `ui 325
+ , $ -> . `E2873 1 `ui 326
+ , $ -> . `E2873 2 `ui 327
+ , $ -> . `E2873 3 `ui 328
+ , $ -> . `E2873 4 `ui 329
+ , $ -> . `E2873 5 `ui 330
+ , $ -> . `E2873 6 `ui 331
+ , $ -> . `E2873 7 `ui 332
  333 ]
 [e :U 323 ]
 "289
@@ -1243,10 +1243,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 388: }
 [e :UE 344 ]
 }
-[v F2989 `(uc ~T0 @X0 1 tf1`*CS273 ]
+[v F2991 `(uc ~T0 @X0 1 tf1`*CS273 ]
 "395
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 395: static __attribute__((inline)) STD_ReturnType hal_timer0_interrupt_handler_init(const timer0_t* timer0){
-[v _hal_timer0_interrupt_handler_init `TF2989 ~T0 @X0 1 s ]
+[v _hal_timer0_interrupt_handler_init `TF2991 ~T0 @X0 1 s ]
 {
 [e :U _hal_timer0_interrupt_handler_init ]
 [v _timer0 `*CS273 ~T0 @X0 1 r1 ]
@@ -1296,7 +1296,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
 "409
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 409:     if(TMR0_InterruptHandler != ((void*)0)){
-[e $ ! != _TMR0_InterruptHandler -> -> -> 0 `i `*v `*F2996 351  ]
+[e $ ! != _TMR0_InterruptHandler -> -> -> 0 `i `*v `*F2998 351  ]
 {
 "410
 [; ;MCAL_Layer/Timer0/hal_timer0.c: 410:         TMR0_InterruptHandler();

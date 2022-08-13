@@ -13,6 +13,7 @@
 
 
 
+
 # 1 "./application.h" 1
 # 13 "./application.h"
 # 1 "./ECU_Layer/ecu_layer_init.h" 1
@@ -5018,12 +5019,12 @@ void RB7_ISR(uint8_t source);
 # 18 "./application.h" 2
 # 35 "./application.h"
 void application_initialize(void);
-# 7 "application.c" 2
+# 8 "application.c" 2
 
 # 1 "./MCAL_Layer/EEPROM/hal_eeprom.h" 1
 # 13 "./MCAL_Layer/EEPROM/hal_eeprom.h"
 # 1 "./MCAL_Layer/EEPROM/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h" 1
-# 97 "./MCAL_Layer/EEPROM/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
+# 98 "./MCAL_Layer/EEPROM/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
 void ADC_ISR(void);
 void Timer0_ISR(void);
 void Timer1_ISR(void);
@@ -5031,14 +5032,16 @@ void Timer2_ISR(void);
 void Timer3_ISR(void);
 void CCP1_ISR(void);
 void CCP2_ISR(void);
+void EUSART_TX_Isr(void);
+void EUSART_RX_Isr(void);
 # 13 "./MCAL_Layer/EEPROM/hal_eeprom.h" 2
 # 37 "./MCAL_Layer/EEPROM/hal_eeprom.h"
 STD_ReturnType Data_EEPROM_WriteByte(uint16_t bAdd , uint8_t bData);
 STD_ReturnType Data_EEPROM_ReadByte(uint16_t bAdd , uint8_t* bData);
-# 8 "application.c" 2
+# 9 "application.c" 2
 
 # 1 "./MCAL_Layer/Interrupt/mcal_interrupt_manager.h" 1
-# 9 "application.c" 2
+# 10 "application.c" 2
 
 # 1 "./MCAL_Layer/ADC/hal_adc.h" 1
 # 13 "./MCAL_Layer/ADC/hal_adc.h"
@@ -5132,7 +5135,7 @@ STD_ReturnType ADC_IsConversionDone(ADC_Cfg_t* _adc ,Conversion_Status_t* conver
 STD_ReturnType ADC_GetConversionResult(ADC_Cfg_t* _adc , uint16_t* result);
 STD_ReturnType ADC_GetConversionBlocking(ADC_Cfg_t* _adc , uint8_t* result,ADC_Select_Channels_t channel);
 STD_ReturnType ADC_StartConversion_Interrupt(ADC_Cfg_t* _adc ,ADC_Select_Channels_t channel);
-# 10 "application.c" 2
+# 11 "application.c" 2
 
 # 1 "./MCAL_Layer/Timer0/hal_timer0.h" 1
 # 16 "./MCAL_Layer/Timer0/hal_timer0.h"
@@ -5205,7 +5208,7 @@ STD_ReturnType hal_timer0_interrupt_enable(const timer0_t* timer0);
 STD_ReturnType hal_timer0_interrupt_disable(const timer0_t* timer0);
 STD_ReturnType hal_timer0_enable(const timer0_t* timer0);
 STD_ReturnType hal_timer0_disable(const timer0_t* timer0);
-# 11 "application.c" 2
+# 12 "application.c" 2
 
 # 1 "./MCAL_Layer/Timer1/hal_timer1.h" 1
 # 15 "./MCAL_Layer/Timer1/hal_timer1.h"
@@ -5243,7 +5246,7 @@ STD_ReturnType hal_timer1_interrupt_enable(const timer1_t* timer1);
 STD_ReturnType hal_timer1_interrupt_disable(const timer1_t* timer1);
 STD_ReturnType hal_timer1_enable(const timer1_t* timer1);
 STD_ReturnType hal_timer1_disable(const timer1_t* timer1);
-# 12 "application.c" 2
+# 13 "application.c" 2
 
 # 1 "./MCAL_Layer/Timer2/hal_timer2.h" 1
 # 17 "./MCAL_Layer/Timer2/hal_timer2.h"
@@ -5272,7 +5275,7 @@ STD_ReturnType hal_timer2_initialize(const timer2_t* timer2);
 STD_ReturnType hal_timer2_deinitialize(const timer2_t* timer2);
 STD_ReturnType hal_timer2_read_value(const timer2_t* timer2,uint8_t* value);
 STD_ReturnType hal_timer2_write_value(const timer2_t* timer2,uint8_t value);
-# 13 "application.c" 2
+# 14 "application.c" 2
 
 # 1 "./MCAL_Layer/Timer3/hal_timer3.h" 1
 # 16 "./MCAL_Layer/Timer3/hal_timer3.h"
@@ -5307,7 +5310,7 @@ STD_ReturnType hal_timer3_interrupt_enable(const timer3_t* timer3);
 STD_ReturnType hal_timer3_interrupt_disable(const timer3_t* timer3);
 STD_ReturnType hal_timer3_enable(const timer3_t* timer3);
 STD_ReturnType hal_timer3_disable(const timer3_t* timer3);
-# 14 "application.c" 2
+# 15 "application.c" 2
 
 # 1 "./MCAL_Layer/CCP1/hal_ccp1.h" 1
 # 48 "./MCAL_Layer/CCP1/hal_ccp1.h"
@@ -5363,7 +5366,7 @@ STD_ReturnType hal_ccp_compareModeSetValue(const ccp_t* ccpobj,uint16 compare_va
 STD_ReturnType hal_ccp_setPWMDuty(const ccp_t* ccpobj,const uint8_t duty);
 STD_ReturnType hal_ccp_PWMStart(const ccp_t* ccpobj);
 STD_ReturnType hal_ccp_PWMStop(const ccp_t* ccpobj);
-# 15 "application.c" 2
+# 16 "application.c" 2
 
 # 1 "./MCAL_Layer/EUSART/hal_eusart.h" 1
 # 86 "./MCAL_Layer/EUSART/hal_eusart.h"
@@ -5383,6 +5386,7 @@ typedef struct{
     uint8 eusart_tx_interrupt_enabled :1;
     uint8 eusart_tx_reserved :5;
     void (*Int_Tx_Handler_Var)(void);
+    interrupt_priority_cfg eusart_tx_priority;
 }eusart_tx_t;
 
 
@@ -5393,6 +5397,7 @@ typedef struct{
     uint8 eusart_rx_interrupt_enabled :1;
     uint8 eusart_rx_reserved :5;
     void (*Int_Rx_Handler_Var)(void);
+    interrupt_priority_cfg eusart_rx_priority;
 }eusart_rx_t;
 
 typedef struct{
@@ -5411,36 +5416,94 @@ STD_ReturnType mcal_eusart_send_byte_non_blocking(uint8 data);
 STD_ReturnType mcal_eusart_receive_byte_blocking(uint8 *data);
 STD_ReturnType mcal_eusart_receive_byte_non_blocking(uint8 *data);
 STD_ReturnType mcal_eusart_send_string_blocking(uint8 *str , uint8 str_length);
-STD_ReturnType mcal_eusart_send_string_non_blocking(uint8 *str , uint8 str_length);
-# 16 "application.c" 2
+
+
+STD_ReturnType mcal_eusart_send_string_non_blocking(void);
+
+STD_ReturnType mcal_eusart_receive_string_blocking(uint8 *str , uint8 str_length);
+STD_ReturnType mcal_eusart_receive_string_non_blocking(uint8 *str , uint8 str_length);
+# 17 "application.c" 2
+
+# 1 "./MCAL_Layer/SPI/hal_spi.h" 1
+# 14 "./MCAL_Layer/SPI/hal_spi.h"
+# 1 "./MCAL_Layer/SPI/hal_spi_cfg.h" 1
+# 14 "./MCAL_Layer/SPI/hal_spi.h" 2
+# 47 "./MCAL_Layer/SPI/hal_spi.h"
+typedef enum{
+    SPI_Transmit_On_Trans_From_Idle_To_Active = 0,
+            SPI_Transmit_On_Trans_From_Active_To_Idle
+
+}spi_clock_phase_t;
+
+typedef enum{
+    Idle_State_Low = 0,
+            Idle_State_High
+}spi_clock_polairty_t;
+
+typedef enum{
+    SPI_Data_Sampled_At_Middle_Of_Output = 0,
+            SPI_Data_Sampled_At_End_Of_Output
+}spi_data_sampling_t;
+
+typedef enum{
+    SPI_Master_Clock_Fosc_Div_By_4 = 0,
+            SPI_Master_Clock_Fosc_Div_By_16,
+            SPI_Master_Clock_Fosc_Div_By_64,
+            SPI_Master_Clock_TMR2_Div_By_2,
+            SPI_Slave_SS_Pin_Enabled,
+            SPI_Slave_SS_Pin_Disabled
+}spi_serial_mode_t;
+
+
+typedef struct{
+
+   spi_serial_mode_t spi_mode;
+   spi_clock_phase_t spi_clock_phase;
+   spi_clock_polairty_t spi_clock_Polarity;
+   spi_data_sampling_t spi_sample_data;
+   uint8 serial_port_enable;
+
+}spi_cfg_t;
+
+
+STD_ReturnType mcal_spi_init(const spi_cfg_t *spi_obj);
+STD_ReturnType mcal_spi_deinit(const spi_cfg_t *spi_obj);
+STD_ReturnType mcal_spi_select_slave(uint8 slave_pin);
+STD_ReturnType mcal_spi_send_byte_blocking(uint8 data);
+STD_ReturnType mcal_spi_receive_byte_blocking(uint8 *data);
+# 18 "application.c" 2
 
 
 
-eusart_tx_t eusartTX = {
-  .Int_Tx_Handler_Var = ((void*)0),
-  .eusart_tx_enabled = 1,
-  .eusart_9bit_transmission = 0,
-  .eusart_tx_interrupt_enabled = 0
+spi_cfg_t _spi = {
+    .serial_port_enable = 1,
+    .spi_clock_Polarity = Idle_State_Low,
+    .spi_clock_phase = SPI_Transmit_On_Trans_From_Idle_To_Active,
+    .spi_mode = SPI_Master_Clock_Fosc_Div_By_64,
+    .spi_sample_data = SPI_Data_Sampled_At_End_Of_Output,
 
 };
 
-eusart_t eusart = {
-    .baudrate_cfg = EUSART_Asynchronous_8bit_HighSpeed,
-    .baudrate_value = 9600,
-    .mode_of_operation = 0,
-    .eusart_tx_cfg = &eusartTX,
-    .eusart_rx_cfg = ((void*)0)
-};
 
 
 int main(void){
-    mcal_eusart_asynchronous_init(&eusart);
+# 62 "application.c"
+    mcal_spi_init(&_spi);
+
+
+
+
+
+
 
     while(1){
-
-        mcal_eusart_send_string_blocking("I Love you Sama\r",16);
+        mcal_spi_select_slave(5);
+        mcal_spi_send_byte_blocking('M');
         _delay((unsigned long)((1000)*(8000000/4000.0)));
-
+        mcal_spi_select_slave(5);
+        mcal_spi_send_byte_blocking('S');
+        _delay((unsigned long)((1000)*(8000000/4000.0)));
+# 93 "application.c"
     }
 
 

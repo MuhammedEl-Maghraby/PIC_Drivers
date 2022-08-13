@@ -36,4 +36,6 @@ MCAL_Layer/Timer2/hal_timer2_config.h  \
 MCAL_Layer/Timer3/hal_timer3.h  \
 MCAL_Layer/Timer3/hal_timer3_config.h  \
 MCAL_Layer/CCP1/hal_ccp1.h  \
-MCAL_Layer/EUSART/hal_eusart.h 
+MCAL_Layer/EUSART/hal_eusart.h  \
+MCAL_Layer/SPI/hal_spi.h  \
+MCAL_Layer/SPI/hal_spi_cfg.h 

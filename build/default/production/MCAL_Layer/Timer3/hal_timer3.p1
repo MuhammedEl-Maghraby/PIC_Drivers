@@ -1,10 +1,10 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F2910 `(v ~T0 @X0 0 tf ]
-[v F2911 `(v ~T0 @X0 0 tf ]
-[v F2873 `(v ~T0 @X0 0 tf ]
+[v F2912 `(v ~T0 @X0 0 tf ]
+[v F2913 `(v ~T0 @X0 0 tf ]
+[v F2875 `(v ~T0 @X0 0 tf ]
 "51 MCAL_Layer/Timer3/hal_timer3.h
 [; ;MCAL_Layer/Timer3/hal_timer3.h: 51: typedef struct{
-[s S273 `*F2873 1 `uc 1 `us 1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :2 `uc 1 ]
+[s S273 `*F2875 1 `uc 1 `us 1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :2 `uc 1 ]
 [n S273 . TMR3_Handler timer3_interrupt_priority_level timer3_preload_value timer3_mode timer3_clock_source timer3_sync_mode timer3_prescaler timer3_rw_mode . ]
 "78
 [; ;MCAL_Layer/Timer3/hal_timer3.h: 78: STD_ReturnType hal_timer3_disable(const timer3_t* timer3);
@@ -21,10 +21,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "69
 [; ;MCAL_Layer/Timer3/hal_timer3.h: 69: STD_ReturnType hal_timer3_write_value(const timer3_t* timer3,uint16_t value);
 [v _hal_timer3_write_value `(uc ~T0 @X0 0 ef2`*CS273`us ]
-[v F2914 `(uc ~T0 @X0 1 tf1`*CS273 ]
+[v F2916 `(uc ~T0 @X0 1 tf1`*CS273 ]
 "14 MCAL_Layer/Timer3/hal_timer3.c
 [; ;MCAL_Layer/Timer3/hal_timer3.c: 14: static __attribute__((inline)) STD_ReturnType hal_timer3_interrupt_handler_init(const timer3_t* timer3);
-[v _hal_timer3_interrupt_handler_init `TF2914 ~T0 @X0 0 s ]
+[v _hal_timer3_interrupt_handler_init `TF2916 ~T0 @X0 0 s ]
 "75 MCAL_Layer/Timer3/hal_timer3.h
 [; ;MCAL_Layer/Timer3/hal_timer3.h: 75: STD_ReturnType hal_timer3_interrupt_enable(const timer3_t* timer3);
 [v _hal_timer3_interrupt_enable `(uc ~T0 @X0 0 ef1`*CS273 ]
@@ -82,8 +82,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S257 . . . . ]
 "6407
 [v _INTCONbits `VS257 ~T0 @X0 0 e@4082 ]
-[v F2960 `(v ~T0 @X0 0 tf ]
-[v F2963 `(v ~T0 @X0 0 tf ]
+[v F2962 `(v ~T0 @X0 0 tf ]
+[v F2965 `(v ~T0 @X0 0 tf ]
 "2801
 [s S98 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S98 . CCP2IF TMR3IF HLVDIF BCLIF EEIF . CMIF OSCFIF ]
@@ -95,7 +95,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S97 . . . ]
 "2816
 [v _PIR2bits `VS97 ~T0 @X0 0 e@4001 ]
-[v F2968 `(v ~T0 @X0 0 tf ]
+[v F2970 `(v ~T0 @X0 0 tf ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4620.h
 [; <" PORTA equ 0F80h ;# ">
 "192
@@ -372,9 +372,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSU equ 0FFFh ;# ">
 "11 MCAL_Layer/Timer3/hal_timer3.c
 [; ;MCAL_Layer/Timer3/hal_timer3.c: 11: static void (*TMR3_InterruptHandler)(void) = ((void*)0);
-[v _TMR3_InterruptHandler `*F2910 ~T0 @X0 1 s ]
+[v _TMR3_InterruptHandler `*F2912 ~T0 @X0 1 s ]
 [i _TMR3_InterruptHandler
--> -> -> 0 `i `*v `*F2911
+-> -> -> 0 `i `*v `*F2913
 ]
 "12
 [; ;MCAL_Layer/Timer3/hal_timer3.c: 12: volatile uint16_t timer3_isr_preload_value;
@@ -1129,10 +1129,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;MCAL_Layer/Timer3/hal_timer3.c: 298: }
 [e :UE 334 ]
 }
-[v F2957 `(uc ~T0 @X0 1 tf1`*CS273 ]
+[v F2959 `(uc ~T0 @X0 1 tf1`*CS273 ]
 "305
 [; ;MCAL_Layer/Timer3/hal_timer3.c: 305: static __attribute__((inline)) STD_ReturnType hal_timer3_interrupt_handler_init(const timer3_t* timer3){
-[v _hal_timer3_interrupt_handler_init `TF2957 ~T0 @X0 1 s ]
+[v _hal_timer3_interrupt_handler_init `TF2959 ~T0 @X0 1 s ]
 {
 [e :U _hal_timer3_interrupt_handler_init ]
 [v _timer3 `*CS273 ~T0 @X0 1 r1 ]
@@ -1147,7 +1147,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "308
 [; ;MCAL_Layer/Timer3/hal_timer3.c: 308:         if(TMR3_InterruptHandler == ((void*)0) && timer3->TMR3_Handler != ((void*)0)){
-[e $ ! && == _TMR3_InterruptHandler -> -> -> 0 `i `*v `*F2960 != . *U _timer3 0 -> -> -> 0 `i `*v `*F2963 339  ]
+[e $ ! && == _TMR3_InterruptHandler -> -> -> 0 `i `*v `*F2962 != . *U _timer3 0 -> -> -> 0 `i `*v `*F2965 339  ]
 {
 "309
 [; ;MCAL_Layer/Timer3/hal_timer3.c: 309:             TMR3_InterruptHandler = timer3->TMR3_Handler;
@@ -1196,7 +1196,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _TMR3L -> _timer3_isr_preload_value `uc ]
 "322
 [; ;MCAL_Layer/Timer3/hal_timer3.c: 322:     if(TMR3_InterruptHandler != ((void*)0)){
-[e $ ! != _TMR3_InterruptHandler -> -> -> 0 `i `*v `*F2968 342  ]
+[e $ ! != _TMR3_InterruptHandler -> -> -> 0 `i `*v `*F2970 342  ]
 {
 "323
 [; ;MCAL_Layer/Timer3/hal_timer3.c: 323:         TMR3_InterruptHandler();

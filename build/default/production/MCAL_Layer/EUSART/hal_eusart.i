@@ -4723,7 +4723,7 @@ typedef enum{
     INTERRUPT_HIGH_PRIORITY
 }interrupt_priority_cfg;
 # 14 "MCAL_Layer/EUSART/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h" 2
-# 97 "MCAL_Layer/EUSART/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
+# 98 "MCAL_Layer/EUSART/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
 void ADC_ISR(void);
 void Timer0_ISR(void);
 void Timer1_ISR(void);
@@ -4731,6 +4731,8 @@ void Timer2_ISR(void);
 void Timer3_ISR(void);
 void CCP1_ISR(void);
 void CCP2_ISR(void);
+void EUSART_TX_Isr(void);
+void EUSART_RX_Isr(void);
 # 12 "MCAL_Layer/EUSART/hal_eusart.h" 2
 # 86 "MCAL_Layer/EUSART/hal_eusart.h"
 typedef enum{
@@ -4749,6 +4751,7 @@ typedef struct{
     uint8 eusart_tx_interrupt_enabled :1;
     uint8 eusart_tx_reserved :5;
     void (*Int_Tx_Handler_Var)(void);
+    interrupt_priority_cfg eusart_tx_priority;
 }eusart_tx_t;
 
 
@@ -4759,6 +4762,7 @@ typedef struct{
     uint8 eusart_rx_interrupt_enabled :1;
     uint8 eusart_rx_reserved :5;
     void (*Int_Rx_Handler_Var)(void);
+    interrupt_priority_cfg eusart_rx_priority;
 }eusart_rx_t;
 
 typedef struct{
@@ -4777,7 +4781,12 @@ STD_ReturnType mcal_eusart_send_byte_non_blocking(uint8 data);
 STD_ReturnType mcal_eusart_receive_byte_blocking(uint8 *data);
 STD_ReturnType mcal_eusart_receive_byte_non_blocking(uint8 *data);
 STD_ReturnType mcal_eusart_send_string_blocking(uint8 *str , uint8 str_length);
-STD_ReturnType mcal_eusart_send_string_non_blocking(uint8 *str , uint8 str_length);
+
+
+STD_ReturnType mcal_eusart_send_string_non_blocking(void);
+
+STD_ReturnType mcal_eusart_receive_string_blocking(uint8 *str , uint8 str_length);
+STD_ReturnType mcal_eusart_receive_string_non_blocking(uint8 *str , uint8 str_length);
 # 8 "MCAL_Layer/EUSART/hal_eusart.c" 2
 
 
@@ -4785,6 +4794,8 @@ static STD_ReturnType eusart_baudrate_configuration_bits_init(const eusart_t *eu
 static STD_ReturnType eusart_tx_init(const eusart_tx_t *eusart_tx_obj);
 static STD_ReturnType eusart_rx_init(const eusart_rx_t *eusart_rx_obj);
 
+static void (*TX_Handler)(void) = ((void*)0);
+static void (*RX_Handler)(void) = ((void*)0);
 
 STD_ReturnType mcal_eusart_asynchronous_init(const eusart_t *eusart_obj){
     STD_ReturnType Status = (STD_ReturnType)0x01;
@@ -4840,43 +4851,77 @@ STD_ReturnType mcal_eusart_send_byte_blocking(uint8 data){
 
 STD_ReturnType mcal_eusart_send_byte_non_blocking(uint8 data){
     STD_ReturnType Status = (STD_ReturnType)0x01;
-
+        TXREG = data;
+        (PIE1bits.TXIE = 1);
     return Status;
 }
 
 
-STD_ReturnType mcal_eusart_receive_byte_blocking(uint8 *data){
-    STD_ReturnType Status = (STD_ReturnType)0x01;
 
-    return Status;
-}
-
-
-STD_ReturnType mcal_eusart_receive_byte_non_blocking(uint8 *data){
-    STD_ReturnType Status = (STD_ReturnType)0x01;
-
-    return Status;
-}
 
 
 STD_ReturnType mcal_eusart_send_string_blocking(uint8 *str , uint8 str_length){
     STD_ReturnType Status = (STD_ReturnType)0x01;
     uint8 str_length_copied = str_length;
     uint8 *str_copied = str;
-    while(str_length_copied--){
-       mcal_eusart_send_byte_blocking(*str_copied);
+    while(*str_copied != '\0'){
+        mcal_eusart_send_byte_blocking(*str_copied);
         str_copied++;
+    }
+    mcal_eusart_send_byte_blocking('\0');
+    return Status;
+}
+# 107 "MCAL_Layer/EUSART/hal_eusart.c"
+STD_ReturnType mcal_eusart_send_string_non_blocking(void){
+    STD_ReturnType Status = (STD_ReturnType)0x01;
+    (TXSTAbits.TXEN = 1);
+
+
+    return Status;
+
+}
+
+
+STD_ReturnType mcal_eusart_receive_byte_blocking(uint8 *data){
+    STD_ReturnType Status = (STD_ReturnType)0x01;
+    while(!PIR1bits.RCIF);
+    *data = RCREG;
+    return Status;
+}
+STD_ReturnType mcal_eusart_receive_byte_non_blocking(uint8 *data){
+    STD_ReturnType Status = (STD_ReturnType)0x01;
+    if(PIR1bits.RCIF){
+        *data = RCREG;
+    }
+    else{
+        Status = (STD_ReturnType)0x00;
     }
     return Status;
 }
-
-
-STD_ReturnType mcal_eusart_send_string_non_blocking(uint8 *str , uint8 str_length){
+STD_ReturnType mcal_eusart_receive_string_blocking(uint8 *str , uint8 str_length){
     STD_ReturnType Status = (STD_ReturnType)0x01;
+    uint8 str_length_copied = str_length;
+    uint8 *str_copied = str;
+    while(RCREG!='\r'){
+        mcal_eusart_receive_byte_blocking(str_copied);
+        str_copied++;
+
+    }
+    *(str_copied++)='\r';
+    *(str_copied++)='\0';
+    RCREG = '\0';
+
+    return Status;
+}
+STD_ReturnType mcal_eusart_receive_string_non_blocking(uint8 *str , uint8 str_length){
+    STD_ReturnType Status = (STD_ReturnType)0x01;
+
 
     return Status;
 
 }
+
+
 
 
 
@@ -4952,21 +4997,7 @@ static STD_ReturnType eusart_baudrate_configuration_bits_init(const eusart_t *eu
 static STD_ReturnType eusart_tx_init(const eusart_tx_t *eusart_tx_obj){
     STD_ReturnType Status = (STD_ReturnType)0x01;
     if(eusart_tx_obj != ((void*)0)){
-
-        (PIE1bits.TXIE = 0);
-
-
-        if(eusart_tx_obj->eusart_tx_enabled == 1){
-            (TXSTAbits.TXEN = 1);
-        }
-        else if(eusart_tx_obj->eusart_tx_enabled == 0){
-            (TXSTAbits.TXEN = 0);
-        }
-        else{
-            Status = (STD_ReturnType)0x00;
-        }
-
-
+# 245 "MCAL_Layer/EUSART/hal_eusart.c"
         if(eusart_tx_obj->eusart_9bit_transmission == 1){
             (TXSTAbits.TX9 = 1);
         }
@@ -4980,9 +5011,16 @@ static STD_ReturnType eusart_tx_init(const eusart_tx_t *eusart_tx_obj){
 
 
         if(eusart_tx_obj->eusart_tx_interrupt_enabled == 1){
+
+            (PIE1bits.TXIE = 0);
+
+            TX_Handler = eusart_tx_obj->Int_Tx_Handler_Var;
+# 276 "MCAL_Layer/EUSART/hal_eusart.c"
+            (INTCONbits.GIE = 1);
+            (INTCONbits.PEIE = 1);
+
+
             (PIE1bits.TXIE = 1);
-
-
         }
         else if(eusart_tx_obj->eusart_tx_interrupt_enabled == 0){
             (PIE1bits.TXIE = 0);
@@ -5006,13 +5044,36 @@ static STD_ReturnType eusart_tx_init(const eusart_tx_t *eusart_tx_obj){
 static STD_ReturnType eusart_rx_init(const eusart_rx_t *eusart_rx_obj){
     STD_ReturnType Status = (STD_ReturnType)0x01;
     if(eusart_rx_obj != ((void*)0)){
-        if(eusart_rx_obj->eusart_rx_interrupt_enabled == 1){
+        if(eusart_rx_obj->eusart_rx_enabled == 1){
+            (RCSTAbits.CREN = 1);
+        }
+        else if(eusart_rx_obj->eusart_rx_enabled == 0){
+            (RCSTAbits.CREN = 0);
+        }
+        else{
+            Status = (STD_ReturnType)0x00;
+        }
 
+
+        if(eusart_rx_obj->eusart_9bit_reception == 1){
+            (RCSTAbits.RX9 = 1);
+        }
+        else if(eusart_rx_obj->eusart_9bit_reception == 0){
+            (RCSTAbits.RX9 = 0);
+        }
+        else{
+            Status = (STD_ReturnType)0x00;
+        }
+
+
+        if(eusart_rx_obj->eusart_rx_interrupt_enabled == 1){
+            (PIE1bits.RCIE = 1);
+            RX_Handler = eusart_rx_obj->Int_Rx_Handler_Var;
 
 
         }
         else if(eusart_rx_obj->eusart_rx_interrupt_enabled == 0){
-
+            (PIE1bits.RCIE = 0);
         }
         else{
             Status = (STD_ReturnType)0x00;
@@ -5025,4 +5086,17 @@ static STD_ReturnType eusart_rx_init(const eusart_rx_t *eusart_rx_obj){
 
 
     return Status;
+}
+
+
+void EUSART_TX_Isr(void){
+
+    if(TX_Handler){
+        TX_Handler();
+    }
+}
+void EUSART_RX_Isr(void){
+    if(RX_Handler){
+        RX_Handler();
+    }
 }

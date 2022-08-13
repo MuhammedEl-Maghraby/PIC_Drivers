@@ -103,6 +103,9 @@ void __interrupt() InterruptManager(void){
     if((INTERRUPT_ENABLE == PIE2bits.CCP2IE) && (INTERRUPT_OCCURED == PIR2bits.CCP2IF)){
         CCP2_ISR();
     }
+    if((INTERRUPT_ENABLE == PIE1bits.TXIE) && (INTERRUPT_OCCURED == PIR1bits.TXIF)){
+        EUSART_TX_Isr();
+    }
     
 }
 

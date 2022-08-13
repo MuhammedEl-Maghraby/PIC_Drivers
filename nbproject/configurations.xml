@@ -61,6 +61,10 @@
           <itemPath>MCAL_Layer/Interrupt/mcal_interrupt_manager.h</itemPath>
           <itemPath>MCAL_Layer/Interrupt/mcal_internal_interrupt.h</itemPath>
         </logicalFolder>
+        <logicalFolder name="SPI" displayName="SPI" projectFiles="true">
+          <itemPath>MCAL_Layer/SPI/hal_spi.h</itemPath>
+          <itemPath>MCAL_Layer/SPI/hal_spi_cfg.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="Timer0" displayName="Timer0" projectFiles="true">
           <itemPath>MCAL_Layer/Timer0/hal_timer0.h</itemPath>
           <itemPath>MCAL_Layer/Timer0/hal_timer0_config.h</itemPath>
@@ -135,6 +139,9 @@
           <itemPath>MCAL_Layer/Interrupt/mcal_internal_interrupt.c</itemPath>
           <itemPath>MCAL_Layer/Interrupt/mcal_external_interrupt.c</itemPath>
           <itemPath>MCAL_Layer/Interrupt/mcal_interrupt_manager.c</itemPath>
+        </logicalFolder>
+        <logicalFolder name="SPI" displayName="SPI" projectFiles="true">
+          <itemPath>MCAL_Layer/SPI/hal_spi.c</itemPath>
         </logicalFolder>
         <logicalFolder name="Timer0" displayName="Timer0" projectFiles="true">
           <itemPath>MCAL_Layer/Timer0/hal_timer0.c</itemPath>

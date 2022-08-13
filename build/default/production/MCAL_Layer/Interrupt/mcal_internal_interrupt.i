@@ -4722,7 +4722,7 @@ typedef enum{
     INTERRUPT_HIGH_PRIORITY
 }interrupt_priority_cfg;
 # 14 "MCAL_Layer/Interrupt/mcal_internal_interrupt.h" 2
-# 97 "MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
+# 98 "MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
 void ADC_ISR(void);
 void Timer0_ISR(void);
 void Timer1_ISR(void);
@@ -4730,5 +4730,7 @@ void Timer2_ISR(void);
 void Timer3_ISR(void);
 void CCP1_ISR(void);
 void CCP2_ISR(void);
+void EUSART_TX_Isr(void);
+void EUSART_RX_Isr(void);
 # 9 "MCAL_Layer/Interrupt/mcal_internal_interrupt.c" 2
 

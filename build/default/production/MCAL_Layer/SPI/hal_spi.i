@@ -1,4 +1,4 @@
-# 1 "MCAL_Layer/Interrupt/mcal_interrupt_manager.c"
+# 1 "MCAL_Layer/SPI/hal_spi.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "MCAL_Layer/Interrupt/mcal_interrupt_manager.c" 2
+# 1 "MCAL_Layer/SPI/hal_spi.c" 2
 
 
 
@@ -14,11 +14,12 @@
 
 
 
-
-# 1 "MCAL_Layer/Interrupt/mcal_interrupt_manager.h" 1
-# 13 "MCAL_Layer/Interrupt/mcal_interrupt_manager.h"
-# 1 "MCAL_Layer/Interrupt/mcal_interrupt_config.h" 1
-# 13 "MCAL_Layer/Interrupt/mcal_interrupt_config.h"
+# 1 "MCAL_Layer/SPI/hal_spi.h" 1
+# 11 "MCAL_Layer/SPI/hal_spi.h"
+# 1 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h" 1
+# 14 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
+# 1 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/mcal_interrupt_config.h" 1
+# 13 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/mcal_interrupt_config.h"
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\\pic\\include\\proc\\../proc/pic18f4620.h" 1 3
 # 45 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\\pic\\include\\proc\\../proc/pic18f4620.h" 3
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\\pic\\include\\__at.h" 1 3
@@ -4231,12 +4232,12 @@ extern volatile __bit nWR __attribute__((address(0x7C21)));
 
 
 extern volatile __bit nWRITE __attribute__((address(0x7E3A)));
-# 13 "MCAL_Layer/Interrupt/mcal_interrupt_config.h" 2
+# 13 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/mcal_interrupt_config.h" 2
 
-# 1 "MCAL_Layer/Interrupt/../mcal_std_types.h" 1
-# 13 "MCAL_Layer/Interrupt/../mcal_std_types.h"
-# 1 "MCAL_Layer/Interrupt/../std_libraries.h" 1
-# 14 "MCAL_Layer/Interrupt/../std_libraries.h"
+# 1 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../mcal_std_types.h" 1
+# 13 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../mcal_std_types.h"
+# 1 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../std_libraries.h" 1
+# 14 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../std_libraries.h"
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdio.h" 1 3
 
 
@@ -4400,7 +4401,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 14 "MCAL_Layer/Interrupt/../std_libraries.h" 2
+# 14 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../std_libraries.h" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdlib.h" 1 3
 # 21 "C:\\Program Files\\Microchip\\xc8\\v2.36\\pic\\include\\c99\\stdlib.h" 3
@@ -4465,11 +4466,11 @@ typedef struct { unsigned int quot, rem; } udiv_t;
 typedef struct { unsigned long quot, rem; } uldiv_t;
 udiv_t udiv (unsigned int, unsigned int);
 uldiv_t uldiv (unsigned long, unsigned long);
-# 15 "MCAL_Layer/Interrupt/../std_libraries.h" 2
-# 13 "MCAL_Layer/Interrupt/../mcal_std_types.h" 2
+# 15 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../std_libraries.h" 2
+# 13 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../mcal_std_types.h" 2
 
-# 1 "MCAL_Layer/Interrupt/../compiler.h" 1
-# 12 "MCAL_Layer/Interrupt/../compiler.h"
+# 1 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../compiler.h" 1
+# 12 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../compiler.h"
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -4631,8 +4632,8 @@ __attribute__((__unsupported__("The " "Write_b_eep" " routine is no longer suppo
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\\pic\\include\\xc.h" 2 3
-# 12 "MCAL_Layer/Interrupt/../compiler.h" 2
-# 14 "MCAL_Layer/Interrupt/../mcal_std_types.h" 2
+# 12 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../compiler.h" 2
+# 14 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../mcal_std_types.h" 2
 
 
 
@@ -4651,16 +4652,16 @@ typedef signed int sint32;
 typedef signed long int lsint64;
 
 typedef uint8 STD_ReturnType;
-# 14 "MCAL_Layer/Interrupt/mcal_interrupt_config.h" 2
+# 14 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/mcal_interrupt_config.h" 2
 
-# 1 "MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/hal_gpio.h" 1
-# 15 "MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/hal_gpio.h"
-# 1 "MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/../device_config.h" 1
-# 15 "MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/hal_gpio.h" 2
+# 1 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/hal_gpio.h" 1
+# 15 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/hal_gpio.h"
+# 1 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/../device_config.h" 1
+# 15 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/hal_gpio.h" 2
 
-# 1 "MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/hal_gpio_cfg.h" 1
-# 16 "MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/hal_gpio.h" 2
-# 37 "MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/hal_gpio.h"
+# 1 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/hal_gpio_cfg.h" 1
+# 16 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/hal_gpio.h" 2
+# 37 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/../../MCAL_Layer/GPIO/hal_gpio.h"
 typedef enum{
     LOW = 0,
     HIGH
@@ -4715,71 +4716,14 @@ STD_ReturnType gpio_port_get_direction_status(Port_Index_t port , uint8 * direct
 STD_ReturnType gpio_port_write_logic(Port_Index_t port,uint8 logic);
 STD_ReturnType gpio_port_read_logic(Port_Index_t port,uint8 * logic);
 STD_ReturnType gpio_port_toggle_logic(Port_Index_t port);
-# 15 "MCAL_Layer/Interrupt/mcal_interrupt_config.h" 2
-# 74 "MCAL_Layer/Interrupt/mcal_interrupt_config.h"
+# 15 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/mcal_interrupt_config.h" 2
+# 74 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/mcal_interrupt_config.h"
 typedef enum{
     INTERRUPT_LOW_PRIORITY = 0,
     INTERRUPT_HIGH_PRIORITY
 }interrupt_priority_cfg;
-# 13 "MCAL_Layer/Interrupt/mcal_interrupt_manager.h" 2
-
-# 1 "MCAL_Layer/Interrupt/mcal_external_interrupt.h" 1
-# 81 "MCAL_Layer/Interrupt/mcal_external_interrupt.h"
-typedef void (*Int_Handler_High)(void);
-typedef void (*Int_Handler_Low)(void);
-typedef enum{
-    INTERRUPT_FALLING_EDGE = 0,
-    INTERRUPT_RISING_EDGE
-
-}interrupt_INTx_edge;
-
-typedef enum{
-    INTERRUPT_EXTERNAL_INT0 = 0,
-    INTERRUPT_EXTERNAL_INT1,
-    INTERRUPT_EXTERNAL_INT2
-
-}interrupt_INTx_src;
-
-
-
-
-typedef struct{
-# 115 "MCAL_Layer/Interrupt/mcal_external_interrupt.h"
-    void(*EXT_InterruptHandler)(void);
-    Pin_Config_t mcu_pin;
-    interrupt_INTx_edge edge;
-    interrupt_INTx_src src;
-    interrupt_priority_cfg priority;
-
-}interrupt_INTx_t;
-
-typedef struct{
-    void(*EXT_InterruptHandler_High)(void);
-    void(*EXT_InterruptHandler_Low)(void);
-    Pin_Config_t mcu_pin;
-    interrupt_priority_cfg priority;
-
-}interrupt_RBx_t;
-
-
-
-STD_ReturnType Interrupt_INTx_Init(const interrupt_INTx_t* int_obj);
-STD_ReturnType Interrupt_INTx_DeInit(const interrupt_INTx_t* int_obj);
-STD_ReturnType Interrupt_RBx_Init(const interrupt_RBx_t* int_obj);
-STD_ReturnType Interrupt_RBx_DeInit(const interrupt_RBx_t* int_obj);
-
-void INT0_ISR(void);
-void INT1_ISR(void);
-void INT2_ISR(void);
-
-void RB4_ISR(uint8_t source);
-void RB5_ISR(uint8_t source);
-void RB6_ISR(uint8_t source);
-void RB7_ISR(uint8_t source);
-# 14 "MCAL_Layer/Interrupt/mcal_interrupt_manager.h" 2
-
-# 1 "MCAL_Layer/Interrupt/mcal_internal_interrupt.h" 1
-# 98 "MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
+# 14 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h" 2
+# 98 "MCAL_Layer/SPI/../../MCAL_Layer/Interrupt/mcal_internal_interrupt.h"
 void ADC_ISR(void);
 void Timer0_ISR(void);
 void Timer1_ISR(void);
@@ -4789,82 +4733,178 @@ void CCP1_ISR(void);
 void CCP2_ISR(void);
 void EUSART_TX_Isr(void);
 void EUSART_RX_Isr(void);
-# 15 "MCAL_Layer/Interrupt/mcal_interrupt_manager.h" 2
-# 9 "MCAL_Layer/Interrupt/mcal_interrupt_manager.c" 2
+# 11 "MCAL_Layer/SPI/hal_spi.h" 2
 
 
 
-static uint8_t RB4_Flag = 1;
-static uint8_t RB5_Flag = 1;
-static uint8_t RB6_Flag = 1;
-static uint8_t RB7_Flag = 1;
-# 42 "MCAL_Layer/Interrupt/mcal_interrupt_manager.c"
-void __attribute__((picinterrupt(("")))) InterruptManager(void){
+# 1 "MCAL_Layer/SPI/hal_spi_cfg.h" 1
+# 14 "MCAL_Layer/SPI/hal_spi.h" 2
+# 47 "MCAL_Layer/SPI/hal_spi.h"
+typedef enum{
+    SPI_Transmit_On_Trans_From_Idle_To_Active = 0,
+            SPI_Transmit_On_Trans_From_Active_To_Idle
 
-    if((INTCONbits.INT0IE == 1)&&(INTCONbits.INT0IF == 1)){
-        INT0_ISR();
+}spi_clock_phase_t;
+
+typedef enum{
+    Idle_State_Low = 0,
+            Idle_State_High
+}spi_clock_polairty_t;
+
+typedef enum{
+    SPI_Data_Sampled_At_Middle_Of_Output = 0,
+            SPI_Data_Sampled_At_End_Of_Output
+}spi_data_sampling_t;
+
+typedef enum{
+    SPI_Master_Clock_Fosc_Div_By_4 = 0,
+            SPI_Master_Clock_Fosc_Div_By_16,
+            SPI_Master_Clock_Fosc_Div_By_64,
+            SPI_Master_Clock_TMR2_Div_By_2,
+            SPI_Slave_SS_Pin_Enabled,
+            SPI_Slave_SS_Pin_Disabled
+}spi_serial_mode_t;
+
+
+typedef struct{
+
+   spi_serial_mode_t spi_mode;
+   spi_clock_phase_t spi_clock_phase;
+   spi_clock_polairty_t spi_clock_Polarity;
+   spi_data_sampling_t spi_sample_data;
+   uint8 serial_port_enable;
+
+}spi_cfg_t;
+
+
+STD_ReturnType mcal_spi_init(const spi_cfg_t *spi_obj);
+STD_ReturnType mcal_spi_deinit(const spi_cfg_t *spi_obj);
+STD_ReturnType mcal_spi_select_slave(uint8 slave_pin);
+STD_ReturnType mcal_spi_send_byte_blocking(uint8 data);
+STD_ReturnType mcal_spi_receive_byte_blocking(uint8 *data);
+# 8 "MCAL_Layer/SPI/hal_spi.c" 2
+
+
+
+
+STD_ReturnType mcal_spi_init(const spi_cfg_t *spi_obj){
+    STD_ReturnType status = (STD_ReturnType)0x01;
+
+    if(spi_obj != ((void*)0)){
+
+        if(spi_obj->serial_port_enable == 1){
+            (SSPCON1bits.SSPEN = 1);
+        }
+        else if (spi_obj->serial_port_enable == 0){
+            (SSPCON1bits.SSPEN = 0);
+        }
+        else{
+            status = (STD_ReturnType)0x00;
+        }
+        TRISCbits.RC5 = 0;
+        switch(spi_obj->spi_mode){
+            case SPI_Master_Clock_Fosc_Div_By_4:
+                (SSPCON1bits.SSPM = SPI_Master_Clock_Fosc_Div_By_4);
+                TRISCbits.RC3 = 0;
+                TRISAbits.RA5 = 0;
+                break;
+
+            case SPI_Master_Clock_Fosc_Div_By_16:
+                (SSPCON1bits.SSPM = SPI_Master_Clock_Fosc_Div_By_16);
+                TRISCbits.RC3 = 0;
+                TRISAbits.RA5 = 0;
+                break;
+
+            case SPI_Master_Clock_Fosc_Div_By_64:
+                (SSPCON1bits.SSPM = SPI_Master_Clock_Fosc_Div_By_64);
+                TRISCbits.RC3 = 0;
+                TRISAbits.RA5 = 0;
+                break;
+
+            case SPI_Master_Clock_TMR2_Div_By_2:
+                (SSPCON1bits.SSPM = SPI_Master_Clock_TMR2_Div_By_2);
+                TRISCbits.RC3 = 0;
+                TRISAbits.RA5 = 0;
+                break;
+
+            case SPI_Slave_SS_Pin_Enabled:
+                (SSPCON1bits.SSPM = SPI_Slave_SS_Pin_Enabled);
+                TRISCbits.RC3 = 1;
+                TRISAbits.RA5 = 1;
+                break;
+
+            case SPI_Slave_SS_Pin_Disabled:
+                (SSPCON1bits.SSPM = SPI_Slave_SS_Pin_Disabled);
+                TRISCbits.RC3 = 1;
+                TRISAbits.RA5 = 1;
+                break;
+
+            default:
+                status = (STD_ReturnType)0x00;
+                break;
+        }
+
+
+        if(spi_obj->spi_clock_phase == SPI_Transmit_On_Trans_From_Idle_To_Active){
+            (SSPSTATbits.CKE = SPI_Transmit_On_Trans_From_Idle_To_Active);
+        }
+        else if(spi_obj->spi_clock_phase == SPI_Transmit_On_Trans_From_Active_To_Idle){
+            (SSPSTATbits.CKE = SPI_Transmit_On_Trans_From_Active_To_Idle);
+        }
+        else{
+          status = (STD_ReturnType)0x00;
+        }
+
+
+        if(spi_obj->spi_clock_Polarity == Idle_State_Low){
+            (SSPCON1bits.CKP = Idle_State_Low);
+        }
+        else if(spi_obj->spi_clock_Polarity == Idle_State_High){
+            (SSPCON1bits.CKP = Idle_State_High);
+        }
+        else{
+            status = (STD_ReturnType)0x00;
+        }
+
+
+        if(spi_obj->spi_sample_data == SPI_Data_Sampled_At_Middle_Of_Output){
+            (SSPSTATbits.SMP = SPI_Data_Sampled_At_Middle_Of_Output);
+        }
+        else if(spi_obj->spi_sample_data == SPI_Data_Sampled_At_End_Of_Output){
+            (SSPSTATbits.SMP = SPI_Data_Sampled_At_End_Of_Output);
+        }
+        else{
+            status = (STD_ReturnType)0x00;
+        }
     }
-    if((INTCON3bits.INT1IE == 1)&&(INTCON3bits.INT1IF == 1)){
-        INT1_ISR();
+    else{
+        status = (STD_ReturnType)0x00;
     }
-    if((INTCON3bits.INT2IE == 1)&&(INTCON3bits.INT2IF == 1)){
-        INT2_ISR();
+
+    return status;
+
+}
+STD_ReturnType mcal_spi_deinit(const spi_cfg_t *spi_obj){
+
+
+}
+STD_ReturnType mcal_spi_select_slave(uint8 slave_pin){
+    STD_ReturnType status = (STD_ReturnType)0x01;
+    if(slave_pin < 8 && slave_pin >= 0){
+        LATA &= ~(1 << slave_pin);
     }
-    if((INTCONbits.RBIE == 1) && (INTCONbits.RBIF == 1)&&(PORTBbits.RB4 == HIGH) && (RB4_Flag == 1)){
-        RB4_Flag = 0;
-        RB4_ISR(0);
+    else{
+        status = (STD_ReturnType)0x00;
     }
-    if((INTCONbits.RBIE == 1) && (INTCONbits.RBIF == 1)&& (PORTBbits.RB4 == LOW) && (RB4_Flag == 0)){
-        RB4_Flag = 1;
-        RB4_ISR(1);
-    }
-    if((INTCONbits.RBIE == 1) && (INTCONbits.RBIF == 1)&&(PORTBbits.RB5 == HIGH) && (RB5_Flag == 1)){
-        RB5_Flag = 0;
-        RB5_ISR(0);
-    }
-    if((INTCONbits.RBIE == 1) && (INTCONbits.RBIF == 1)&& (PORTBbits.RB5 == LOW) && (RB5_Flag == 0)){
-        RB5_Flag = 1;
-       RB5_ISR(1);
-    }
-    if((INTCONbits.RBIE == 1) && (INTCONbits.RBIF == 1)&&(PORTBbits.RB6 == HIGH) && (RB6_Flag == 1)){
-        RB6_Flag = 0;
-        RB6_ISR(0);
-    }
-    if((INTCONbits.RBIE == 1) && (INTCONbits.RBIF == 1)&& (PORTBbits.RB6 == LOW) && (RB6_Flag == 0)){
-        RB6_Flag = 1;
-        RB6_ISR(1);
-    }
-    if((INTCONbits.RBIE == 1) && (INTCONbits.RBIF == 1)&&(PORTBbits.RB7 == HIGH) && (RB7_Flag == 1)){
-        RB7_Flag = 0;
-        RB7_ISR(0);
-    }
-    if((INTCONbits.RBIE == 1) && (INTCONbits.RBIF == 1)&& (PORTBbits.RB7 == LOW) && (RB7_Flag == 0)){
-        RB7_Flag = 1;
-        RB7_ISR(1);
-    }
-    if((PIE1bits.ADIE == 1) && (PIR1bits.ADIF == 1)){
-        ADC_ISR();
-    }
-    if((1 == INTCONbits.TMR0IE) && (1 == INTCONbits.TMR0IF)){
-        Timer0_ISR();
-    }
-    if((1 == PIE1bits.TMR1IE) && (1 == PIR1bits.TMR1IF)){
-        Timer1_ISR();
-    }
-    if((1 == PIE1bits.TMR2IE) && (1 == PIR1bits.TMR2IF)){
-        Timer2_ISR();
-    }
-    if((1 == PIE2bits.TMR3IE) && (1 == PIR2bits.TMR3IF)){
-        Timer3_ISR();
-    }
-    if((1 == PIE1bits.CCP1IE) && (1 == PIR1bits.CCP1IF)){
-        CCP1_ISR();
-    }
-    if((1 == PIE2bits.CCP2IE) && (1 == PIR2bits.CCP2IF)){
-        CCP2_ISR();
-    }
-    if((1 == PIE1bits.TXIE) && (1 == PIR1bits.TXIF)){
-        EUSART_TX_Isr();
-    }
+}
+
+STD_ReturnType mcal_spi_send_byte_blocking(uint8 data){
+    SSPBUF = data;
+    while(!PIR1bits.SSPIF);
+
+}
+STD_ReturnType mcal_spi_receive_byte_blocking(uint8 *data){
+    while(!SSPSTATbits.BF);
+    *data = SSPBUF;
 
 }

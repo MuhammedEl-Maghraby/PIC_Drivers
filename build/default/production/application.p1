@@ -1,30 +1,28 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[v F3561 `(v ~T0 @X0 0 tf ]
-"96 ./MCAL_Layer/EUSART/hal_eusart.h
-[; ;./MCAL_Layer/EUSART/hal_eusart.h: 96: typedef struct{
-[s S292 :1 `uc 1 :1 `uc 1 :1 `uc 1 :5 `uc 1 `*F3561 1 ]
-[n S292 . eusart_tx_enabled eusart_9bit_transmission eusart_tx_interrupt_enabled eusart_tx_reserved Int_Tx_Handler_Var ]
-[v F3598 `(v ~T0 @X0 0 tf ]
-"27 application.c
-[; ;application.c: 27: eusart_t eusart = {
-[c E3547 0 1 2 3 4 5 .. ]
-[n E3547 . EUSART_Asynchronous_8bit_LowSpeed EUSART_Asynchronous_8bit_HighSpeed EUSART_Asynchronous_16bit_LowSpeed EUSART_Asynchronous_16bit_HighSpeed EUSART_Synchronous_8bit EUSART_Synchronous_16bit  ]
-[v F3569 `(v ~T0 @X0 0 tf ]
-"106 ./MCAL_Layer/EUSART/hal_eusart.h
-[; ;./MCAL_Layer/EUSART/hal_eusart.h: 106: typedef struct{
-[s S293 :1 `uc 1 :1 `uc 1 :1 `uc 1 :5 `uc 1 `*F3569 1 ]
-[n S293 . eusart_rx_enabled eusart_9bit_reception eusart_rx_interrupt_enabled eusart_rx_reserved Int_Rx_Handler_Var ]
-"114
-[; ;./MCAL_Layer/EUSART/hal_eusart.h: 114: typedef struct{
-[s S294 `uc 1 `ui 1 `E3547 1 `*S292 1 `*S293 1 ]
-[n S294 . mode_of_operation baudrate_value baudrate_cfg eusart_tx_cfg eusart_rx_cfg ]
+"21 application.c
+[; ;application.c: 21: spi_cfg_t _spi = {
+[c E3617 0 1 2 3 4 5 .. ]
+[n E3617 . SPI_Master_Clock_Fosc_Div_By_4 SPI_Master_Clock_Fosc_Div_By_16 SPI_Master_Clock_Fosc_Div_By_64 SPI_Master_Clock_TMR2_Div_By_2 SPI_Slave_SS_Pin_Enabled SPI_Slave_SS_Pin_Disabled  ]
+[c E3605 0 1 .. ]
+[n E3605 . SPI_Transmit_On_Trans_From_Idle_To_Active SPI_Transmit_On_Trans_From_Active_To_Idle  ]
+[c E3609 0 1 .. ]
+[n E3609 . Idle_State_Low Idle_State_High  ]
+[c E3613 0 1 .. ]
+[n E3613 . SPI_Data_Sampled_At_Middle_Of_Output SPI_Data_Sampled_At_End_Of_Output  ]
+"73 ./MCAL_Layer/SPI/hal_spi.h
+[; ;./MCAL_Layer/SPI/hal_spi.h: 73: typedef struct{
+[s S295 `E3617 1 `E3605 1 `E3609 1 `E3613 1 `uc 1 ]
+[n S295 . spi_mode spi_clock_phase spi_clock_Polarity spi_sample_data serial_port_enable ]
 [p mainexit ]
-"122
-[; ;./MCAL_Layer/EUSART/hal_eusart.h: 122: STD_ReturnType mcal_eusart_asynchronous_init(const eusart_t *eusart_obj);
-[v _mcal_eusart_asynchronous_init `(uc ~T0 @X0 0 ef1`*CS294 ]
-"129
-[; ;./MCAL_Layer/EUSART/hal_eusart.h: 129: STD_ReturnType mcal_eusart_send_string_blocking(uint8 *str , uint8 str_length);
-[v _mcal_eusart_send_string_blocking `(uc ~T0 @X0 0 ef2`*uc`uc ]
+"84
+[; ;./MCAL_Layer/SPI/hal_spi.h: 84: STD_ReturnType mcal_spi_init(const spi_cfg_t *spi_obj);
+[v _mcal_spi_init `(uc ~T0 @X0 0 ef1`*CS295 ]
+"86
+[; ;./MCAL_Layer/SPI/hal_spi.h: 86: STD_ReturnType mcal_spi_select_slave(uint8 slave_pin);
+[v _mcal_spi_select_slave `(uc ~T0 @X0 0 ef1`uc ]
+"87
+[; ;./MCAL_Layer/SPI/hal_spi.h: 87: STD_ReturnType mcal_spi_send_byte_blocking(uint8 data);
+[v _mcal_spi_send_byte_blocking `(uc ~T0 @X0 0 ef1`uc ]
 [v F2768 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\builtins.h
 [v __delay `JF2768 ~T0 @X0 0 e ]
@@ -303,66 +301,63 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 0FFEh ;# ">
 "6716
 [; <" TOSU equ 0FFFh ;# ">
-"19 application.c
-[; ;application.c: 19: eusart_tx_t eusartTX = {
-[v _eusartTX `S292 ~T0 @X0 1 e ]
-[i _eusartTX
+"21 application.c
+[; ;application.c: 21: spi_cfg_t _spi = {
+[v __spi `S295 ~T0 @X0 1 e ]
+[i __spi
 :U ..
 :U ..
+. `E3617 2
+. `E3605 0
+. `E3609 0
+. `E3613 1
 -> -> 1 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> 0 `i `uc
--> -> -> 0 `i `*v `*F3598
-..
-..
-]
-"27
-[; ;application.c: 27: eusart_t eusart = {
-[v _eusart `S294 ~T0 @X0 1 e ]
-[i _eusart
-:U ..
-:U ..
--> -> 0 `i `uc
--> -> 9600 `i `ui
-. `E3547 1
-&U _eusartTX
--> -> -> 0 `i `*v `*S293
 ..
 ..
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"36
-[; ;application.c: 36: int main(void){
+"32
+[; ;application.c: 32: int main(void){
 [v _main `(i ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"37
-[; ;application.c: 37:     mcal_eusart_asynchronous_init(&eusart);
-[e ( _mcal_eusart_asynchronous_init (1 -> &U _eusart `*CS294 ]
-"39
-[; ;application.c: 39:     while(1){
-[e :U 297 ]
-{
-"41
-[; ;application.c: 41:         mcal_eusart_send_string_blocking("I Love you Sama\r",16);
-[e ( _mcal_eusart_send_string_blocking (2 , :s 1C -> -> 16 `i `uc ]
-"42
-[; ;application.c: 42:         _delay((unsigned long)((1000)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"44
-[; ;application.c: 44:     }
-}
-[e :U 296 ]
-[e $U 297  ]
+"62
+[; ;application.c: 62:     mcal_spi_init(&_spi);
+[e ( _mcal_spi_init (1 -> &U __spi `*CS295 ]
+"70
+[; ;application.c: 70:     while(1){
 [e :U 298 ]
-"49
-[; ;application.c: 49:     return (0);
-[e ) -> 0 `i ]
-[e $UE 295  ]
-"50
-[; ;application.c: 50: }
-[e :UE 295 ]
+{
+"71
+[; ;application.c: 71:         mcal_spi_select_slave(5);
+[e ( _mcal_spi_select_slave (1 -> -> 5 `i `uc ]
+"72
+[; ;application.c: 72:         mcal_spi_send_byte_blocking('M');
+[e ( _mcal_spi_send_byte_blocking (1 -> -> 77 `ui `uc ]
+"73
+[; ;application.c: 73:         _delay((unsigned long)((1000)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"74
+[; ;application.c: 74:         mcal_spi_select_slave(5);
+[e ( _mcal_spi_select_slave (1 -> -> 5 `i `uc ]
+"75
+[; ;application.c: 75:         mcal_spi_send_byte_blocking('S');
+[e ( _mcal_spi_send_byte_blocking (1 -> -> 83 `ui `uc ]
+"76
+[; ;application.c: 76:         _delay((unsigned long)((1000)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"93
+[; ;application.c: 93:     }
 }
-[a 1C 73 32 76 111 118 101 32 121 111 117 32 83 97 109 97 13 0 ]
+[e :U 297 ]
+[e $U 298  ]
+[e :U 299 ]
+"98
+[; ;application.c: 98:     return (0);
+[e ) -> 0 `i ]
+[e $UE 296  ]
+"99
+[; ;application.c: 99: }
+[e :UE 296 ]
+}
