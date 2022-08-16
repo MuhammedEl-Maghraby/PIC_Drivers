@@ -74,7 +74,7 @@ STD_ReturnType mcal_spi_init(const spi_cfg_t *spi_obj){
             SPI_Clock_Phase_Config(SPI_Transmit_On_Trans_From_Active_To_Idle);
         }
         else{
-          status = E_NOT_OK;  
+            status = E_NOT_OK;  
         }
         
         /*Configure clock polarity*/
@@ -87,7 +87,7 @@ STD_ReturnType mcal_spi_init(const spi_cfg_t *spi_obj){
         else{
             status = E_NOT_OK;            
         }
-           
+        
         /*Configure data sampling mode*/
         if(spi_obj->spi_sample_data == SPI_Data_Sampled_At_Middle_Of_Output){
             SPI_Data_Sampling_Config(SPI_Data_Sampled_At_Middle_Of_Output);
@@ -102,7 +102,7 @@ STD_ReturnType mcal_spi_init(const spi_cfg_t *spi_obj){
     else{
         status = E_NOT_OK;
     }
-
+    
     return status;
     
 }
@@ -118,15 +118,50 @@ STD_ReturnType mcal_spi_select_slave(uint8 slave_pin){
     else{
         status = E_NOT_OK;
     }
+    return status;
 }
 
 STD_ReturnType mcal_spi_send_byte_blocking(uint8 data){
+    STD_ReturnType status = E_OK;
+    uint8 dummyData ;
     SSPBUF = data;
-    while(!PIR1bits.SSPIF);
-    
+    //while(!PIR1bits.SSPIF);
+     while(!SSPSTATbits.BF);
+    dummyData = SSPBUF;
+    return status;
 }
 STD_ReturnType mcal_spi_receive_byte_blocking(uint8 *data){
+    STD_ReturnType status = E_OK;
+    
     while(!SSPSTATbits.BF);
     *data = SSPBUF;
-    
+    return status;
+}
+
+STD_ReturnType mcal_spi_send_string_blocking(uint8 *str){
+    STD_ReturnType status = E_OK;
+    if(str != NULL){
+        while(*str != '\0'){
+            mcal_spi_send_byte_blocking(*str);
+            str++;
+        }
+    }
+    else{
+        status = E_NOT_OK;
+    }
+    return status;
+}
+STD_ReturnType mcal_spi_receive_string_blocking(uint8 *str){
+    STD_ReturnType status = E_OK;
+    if(str != NULL){
+        
+        while(SSPBUF != '\0'){
+            mcal_spi_receive_byte_blocking(str);
+            str++;
+        }
+    }
+    else{
+        status = E_NOT_OK;
+    }
+    return status;
 }

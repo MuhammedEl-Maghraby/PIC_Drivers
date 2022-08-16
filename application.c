@@ -22,8 +22,8 @@ spi_cfg_t _spi = {
     .serial_port_enable = ENABLE_SERIAL_PORT,  
     .spi_clock_Polarity = Idle_State_Low,
     .spi_clock_phase = SPI_Transmit_On_Trans_From_Idle_To_Active,
-    .spi_mode = SPI_Master_Clock_Fosc_Div_By_64,
-    .spi_sample_data = SPI_Data_Sampled_At_End_Of_Output,
+    .spi_mode = SPI_Master_Clock_Fosc_Div_By_4,
+    .spi_sample_data = SPI_Data_Sampled_At_Middle_Of_Output,
     //.spi_mode = SPI_Slave_SS_Pin_Enabled
 };
 
@@ -31,64 +31,91 @@ spi_cfg_t _spi = {
 
 int main(void){  
     
-//    Pin_Config_t rd0={
-//    .port = PORTD_INDEX,
-//    .pin = PIN0,
-//    .direction = OUTPUT,
-//    .logic = LOW
-//};
-//Pin_Config_t rd1={
-//    .port = PORTD_INDEX,
-//    .pin = PIN1,
-//    .direction = OUTPUT,
-//    .logic = LOW
-//};
-//Pin_Config_t rd2={
-//    .port = PORTD_INDEX,
-//    .pin = PIN2,
-//    .direction = OUTPUT,
-//    .logic = LOW
-//};
-//Pin_Config_t rd3={
-//    .port = PORTD_INDEX,
-//    .pin = PIN3,
-//    .direction = OUTPUT,
-//    .logic = LOW
-//};
-
-        
-//Pin_Config_t arr[4]={rd0,rd1,rd2,rd3};
+    //    Pin_Config_t rd0={
+    //    .port = PORTD_INDEX,
+    //    .pin = PIN0,
+    //    .direction = OUTPUT,
+    //    .logic = LOW
+    //};
+    //Pin_Config_t rd1={
+    //    .port = PORTD_INDEX,
+    //    .pin = PIN1,
+    //    .direction = OUTPUT,
+    //    .logic = LOW
+    //};
+    //Pin_Config_t rd2={
+    //    .port = PORTD_INDEX,
+    //    .pin = PIN2,
+    //    .direction = OUTPUT,
+    //    .logic = LOW
+    //};
+    //Pin_Config_t rd3={
+    //    .port = PORTD_INDEX,
+    //    .pin = PIN3,
+    //    .direction = OUTPUT,
+    //    .logic = LOW
+    //};
+    //
+    //        
+    //Pin_Config_t arr[4]={rd0,rd1,rd2,rd3};
     
-    mcal_spi_init(&_spi);
-//    gpio_pin_initialize(&rd0);
-//    gpio_pin_initialize(&rd1);
-//    gpio_pin_initialize(&rd2);
-//    gpio_pin_initialize(&rd3);
     
+    //    gpio_pin_initialize(&rd0);
+    //    gpio_pin_initialize(&rd1);
+    //    gpio_pin_initialize(&rd2);
+    //    gpio_pin_initialize(&rd3);
+    
+    
+    //    mcal_spi_init(&_spi);
+    
+    SSPCON1bits.SSPM0 = 0;
+    SSPCON1bits.SSPM1 = 0;
+    SSPCON1bits.SSPM2 = 0;
+    SSPCON1bits.SSPM3 = 0;
+    SSPCON1bits.SSPEN = 1;
+    SSPCON1bits.CKP = 0;
+    SSPSTATbits.CKE = 0;
+    SSPSTATbits.SMP = 0;
+    TRISCbits.RC5 = 0;
+    TRISCbits.RC3 = 0;
+    TRISAbits.RA5 = 0;
     //LATA |= (1 << 5);
     
     while(1){
+        
+        
         mcal_spi_select_slave(5);
+        // mcal_spi_send_string_blocking("I love you");
         mcal_spi_send_byte_blocking('M');
         __delay_ms(1000);
-        mcal_spi_select_slave(5);
-        mcal_spi_send_byte_blocking('S');
-        __delay_ms(1000);
         
-//        mcal_spi_receive_byte_blocking(&receivedByte);
-//        if(receivedByte == 'M'){
-//            for(int i = 0 ; i < 4 ; i++){
-//                gpio_pin_write_logic(&arr[i],HIGH);
-//                __delay_ms(100);
-//            }
-//        }
-//        else if(receivedByte == 'S'){
-//            for(int i = 0 ; i < 4 ; i++){
-//                gpio_pin_write_logic(&arr[i],LOW);
-//                __delay_ms(100);
-//            }
-//        }
-//        receivedByte = 0;
+        //        mcal_spi_select_slave(5);
+        //        mcal_spi_send_byte_blocking('M');
+        //        __delay_ms(3000);
+        //        mcal_spi_select_slave(5);
+        //        mcal_spi_send_byte_blocking('S');
+        //__delay_ms(1000);
+        
+        
+        
+        
+        
+        /*Slave code
+         mcal_spi_receive_byte_blocking(&receivedByte);
+         if(receivedByte == 'M'){
+         for(int i = 0 ; i < 4 ; i++){
+         gpio_pin_write_logic(&arr[i],HIGH);
+         __delay_ms(100);
+         }
+         }
+         else if(receivedByte == 'S'){
+         for(int i = 0 ; i < 4 ; i++){
+         gpio_pin_write_logic(&arr[i],LOW);
+         __delay_ms(100);
+         }
+         }
+         receivedByte = 0;
+         */
         
     }
     

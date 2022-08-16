@@ -424,12 +424,12 @@ SPI_Data_Sampled_At_End_Of_Output 1
 [v _RB7_ISR RB7_ISR `(v  1 e 1 0 ]
 "42 D:\Embedded Systems\Embedded Projects Ahmed Abdelghafar course\MCAL_Layer/Interrupt/mcal_interrupt_manager.c
 [v _InterruptManager InterruptManager `IIH(v  1 e 1 0 ]
-"12 D:\Embedded Systems\Embedded Projects Ahmed Abdelghafar course\MCAL_Layer/SPI/hal_spi.c
-[v _mcal_spi_init mcal_spi_init `(uc  1 e 1 0 ]
-"113
+"113 D:\Embedded Systems\Embedded Projects Ahmed Abdelghafar course\MCAL_Layer/SPI/hal_spi.c
 [v _mcal_spi_select_slave mcal_spi_select_slave `(uc  1 e 1 0 ]
-"123
+"124
 [v _mcal_spi_send_byte_blocking mcal_spi_send_byte_blocking `(uc  1 e 1 0 ]
+"133
+[v _mcal_spi_receive_byte_blocking mcal_spi_receive_byte_blocking `(uc  1 e 1 0 ]
 "135 D:\Embedded Systems\Embedded Projects Ahmed Abdelghafar course\MCAL_Layer/Timer0/hal_timer0.c
 [v _hal_timer0_select_clock_source hal_timer0_select_clock_source `(uc  1 e 1 0 ]
 "162
@@ -498,9 +498,6 @@ SPI_Data_Sampled_At_End_Of_Output 1
 [v _hal_timer3_interrupt_handler_init hal_timer3_interrupt_handler_init `T(uc  1 s 1 hal_timer3_interrupt_handler_init ]
 "318
 [v _Timer3_ISR Timer3_ISR `(v  1 e 1 0 ]
-[s S3889 . 5 `E3617 1 spi_mode 1 0 `E3605 1 spi_clock_phase 1 1 `E3609 1 spi_clock_Polarity 1 2 `E3613 1 spi_sample_data 1 3 `uc 1 serial_port_enable 1 4 ]
-"21 D:\Embedded Systems\Embedded Projects Ahmed Abdelghafar course\application.c
-[v __spi _spi `S3889  1 e 5 0 ]
 "53 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4620.h
 [v _PORTA PORTA `VEuc  1 e 1 @3968 ]
 "190
@@ -556,7 +553,7 @@ SPI_Data_Sampled_At_End_Of_Output 1
 [v _LATE LATE `VEuc  1 e 1 @3981 ]
 "1381
 [v _TRISA TRISA `VEuc  1 e 1 @3986 ]
-[s S3993 . 1 `uc 1 TRISA0 1 0 :1:0 
+[s S4071 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -566,7 +563,7 @@ SPI_Data_Sampled_At_End_Of_Output 1
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "1413
-[s S4002 . 1 `uc 1 RA0 1 0 :1:0 
+[s S4080 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -575,8 +572,8 @@ SPI_Data_Sampled_At_End_Of_Output 1
 `uc 1 RA6 1 0 :1:6 
 `uc 1 RA7 1 0 :1:7 
 ]
-[u S4011 . 1 `S3993 1 . 1 0 `S4002 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES4011  1 e 1 @3986 ]
+[u S4089 . 1 `S4071 1 . 1 0 `S4080 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES4089  1 e 1 @3986 ]
 "1603
 [v _TRISB TRISB `VEuc  1 e 1 @3987 ]
 "1825
@@ -919,28 +916,28 @@ SPI_Data_Sampled_At_End_Of_Output 1
 [v _ADRESL ADRESL `VEuc  1 e 1 @4035 ]
 "4663
 [v _ADRESH ADRESH `VEuc  1 e 1 @4036 ]
-[s S3945 . 1 `uc 1 SSPM 1 0 :4:0 
+[s S3895 . 1 `uc 1 SSPM 1 0 :4:0 
 `uc 1 CKP 1 0 :1:4 
 `uc 1 SSPEN 1 0 :1:5 
 `uc 1 SSPOV 1 0 :1:6 
 `uc 1 WCOL 1 0 :1:7 
 ]
 "4752
-[s S3951 . 1 `uc 1 SSPM0 1 0 :1:0 
+[s S3901 . 1 `uc 1 SSPM0 1 0 :1:0 
 `uc 1 SSPM1 1 0 :1:1 
 `uc 1 SSPM2 1 0 :1:2 
 `uc 1 SSPM3 1 0 :1:3 
 ]
-[u S3956 . 1 `S3945 1 . 1 0 `S3951 1 . 1 0 ]
-[v _SSPCON1bits SSPCON1bits `VES3956  1 e 1 @4038 ]
-[s S4033 . 1 `uc 1 . 1 0 :2:0 
+[u S3906 . 1 `S3895 1 . 1 0 `S3901 1 . 1 0 ]
+[v _SSPCON1bits SSPCON1bits `VES3906  1 e 1 @4038 ]
+[s S3921 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_NOT_W 1 0 :1:2 
 ]
 "4878
-[s S4036 . 1 `uc 1 . 1 0 :5:0 
+[s S3924 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 D_NOT_A 1 0 :1:5 
 ]
-[s S4039 . 1 `uc 1 BF 1 0 :1:0 
+[s S3927 . 1 `uc 1 BF 1 0 :1:0 
 `uc 1 UA 1 0 :1:1 
 `uc 1 R_nW 1 0 :1:2 
 `uc 1 S 1 0 :1:3 
@@ -949,50 +946,50 @@ SPI_Data_Sampled_At_End_Of_Output 1
 `uc 1 CKE 1 0 :1:6 
 `uc 1 SMP 1 0 :1:7 
 ]
-[s S4048 . 1 `uc 1 . 1 0 :2:0 
+[s S3936 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D 1 0 :1:5 
 ]
-[s S4053 . 1 `uc 1 . 1 0 :2:0 
+[s S3941 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 A 1 0 :1:5 
 ]
-[s S4058 . 1 `uc 1 . 1 0 :2:0 
+[s S3946 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nW 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nA 1 0 :1:5 
 ]
-[s S4063 . 1 `uc 1 . 1 0 :2:0 
+[s S3951 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 R_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 D_A 1 0 :1:5 
 ]
-[s S4068 . 1 `uc 1 . 1 0 :2:0 
+[s S3956 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_WRITE 1 0 :1:2 
 ]
-[s S4071 . 1 `uc 1 . 1 0 :5:0 
+[s S3959 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 NOT_ADDRESS 1 0 :1:5 
 ]
-[s S4074 . 1 `uc 1 . 1 0 :2:0 
+[s S3962 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 nWRITE 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 nADDRESS 1 0 :1:5 
 ]
-[s S4079 . 1 `uc 1 . 1 0 :2:0 
+[s S3967 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 RW 1 0 :1:2 
 `uc 1 START 1 0 :1:3 
 `uc 1 STOP 1 0 :1:4 
 `uc 1 DA 1 0 :1:5 
 ]
-[s S4085 . 1 `uc 1 . 1 0 :2:0 
+[s S3973 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_W 1 0 :1:2 
 `uc 1 . 1 0 :2:3 
 `uc 1 NOT_A 1 0 :1:5 
 ]
-[u S4090 . 1 `S4033 1 . 1 0 `S4036 1 . 1 0 `S4039 1 . 1 0 `S4048 1 . 1 0 `S4053 1 . 1 0 `S4058 1 . 1 0 `S4063 1 . 1 0 `S4068 1 . 1 0 `S4071 1 . 1 0 `S4074 1 . 1 0 `S4079 1 . 1 0 `S4085 1 . 1 0 ]
-[v _SSPSTATbits SSPSTATbits `VES4090  1 e 1 @4039 ]
+[u S3978 . 1 `S3921 1 . 1 0 `S3924 1 . 1 0 `S3927 1 . 1 0 `S3936 1 . 1 0 `S3941 1 . 1 0 `S3946 1 . 1 0 `S3951 1 . 1 0 `S3956 1 . 1 0 `S3959 1 . 1 0 `S3962 1 . 1 0 `S3967 1 . 1 0 `S3973 1 . 1 0 ]
+[v _SSPSTATbits SSPSTATbits `VES3978  1 e 1 @4039 ]
 "5030
 [v _SSPBUF SSPBUF `VEuc  1 e 1 @4041 ]
 [s S3427 . 1 `uc 1 T2CKPS 1 0 :2:0 
@@ -1203,15 +1200,15 @@ SPI_Data_Sampled_At_End_Of_Output 1
 "32 D:\Embedded Systems\Embedded Projects Ahmed Abdelghafar course\application.c
 [v _main main `(i  1 e 2 0 ]
 {
-"99
+"126
 } 0
-"123 D:\Embedded Systems\Embedded Projects Ahmed Abdelghafar course\MCAL_Layer/SPI/hal_spi.c
+"124 D:\Embedded Systems\Embedded Projects Ahmed Abdelghafar course\MCAL_Layer/SPI/hal_spi.c
 [v _mcal_spi_send_byte_blocking mcal_spi_send_byte_blocking `(uc  1 e 1 0 ]
 {
 [v mcal_spi_send_byte_blocking@data data `uc  1 a 1 wreg ]
 [v mcal_spi_send_byte_blocking@data data `uc  1 a 1 wreg ]
 [v mcal_spi_send_byte_blocking@data data `uc  1 a 1 1 ]
-"127
+"132
 } 0
 "113
 [v _mcal_spi_select_slave mcal_spi_select_slave `(uc  1 e 1 0 ]
@@ -1219,14 +1216,7 @@ SPI_Data_Sampled_At_End_Of_Output 1
 [v mcal_spi_select_slave@slave_pin slave_pin `uc  1 a 1 wreg ]
 [v mcal_spi_select_slave@slave_pin slave_pin `uc  1 a 1 wreg ]
 [v mcal_spi_select_slave@slave_pin slave_pin `uc  1 a 1 3 ]
-"121
-} 0
-"12
-[v _mcal_spi_init mcal_spi_init `(uc  1 e 1 0 ]
-{
-[s S3889 . 5 `E3617 1 spi_mode 1 0 `E3605 1 spi_clock_phase 1 1 `E3609 1 spi_clock_Polarity 1 2 `E3613 1 spi_sample_data 1 3 `uc 1 serial_port_enable 1 4 ]
-[v mcal_spi_init@spi_obj spi_obj `*.39CS3889  1 p 2 1 ]
-"108
+"122
 } 0
 "42 D:\Embedded Systems\Embedded Projects Ahmed Abdelghafar course\MCAL_Layer/Interrupt/mcal_interrupt_manager.c
 [v _InterruptManager InterruptManager `IIH(v  1 e 1 0 ]

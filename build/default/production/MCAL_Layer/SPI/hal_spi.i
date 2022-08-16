@@ -4782,6 +4782,8 @@ STD_ReturnType mcal_spi_deinit(const spi_cfg_t *spi_obj);
 STD_ReturnType mcal_spi_select_slave(uint8 slave_pin);
 STD_ReturnType mcal_spi_send_byte_blocking(uint8 data);
 STD_ReturnType mcal_spi_receive_byte_blocking(uint8 *data);
+STD_ReturnType mcal_spi_send_string_blocking(uint8 *str);
+STD_ReturnType mcal_spi_receive_string_blocking(uint8 *str);
 # 8 "MCAL_Layer/SPI/hal_spi.c" 2
 
 
@@ -4852,7 +4854,7 @@ STD_ReturnType mcal_spi_init(const spi_cfg_t *spi_obj){
             (SSPSTATbits.CKE = SPI_Transmit_On_Trans_From_Active_To_Idle);
         }
         else{
-          status = (STD_ReturnType)0x00;
+            status = (STD_ReturnType)0x00;
         }
 
 
@@ -4896,15 +4898,50 @@ STD_ReturnType mcal_spi_select_slave(uint8 slave_pin){
     else{
         status = (STD_ReturnType)0x00;
     }
+    return status;
 }
 
 STD_ReturnType mcal_spi_send_byte_blocking(uint8 data){
+    STD_ReturnType status = (STD_ReturnType)0x01;
+    uint8 dummyData ;
     SSPBUF = data;
-    while(!PIR1bits.SSPIF);
 
+     while(!SSPSTATbits.BF);
+    dummyData = SSPBUF;
+    return status;
 }
 STD_ReturnType mcal_spi_receive_byte_blocking(uint8 *data){
+    STD_ReturnType status = (STD_ReturnType)0x01;
+
     while(!SSPSTATbits.BF);
     *data = SSPBUF;
+    return status;
+}
 
+STD_ReturnType mcal_spi_send_string_blocking(uint8 *str){
+    STD_ReturnType status = (STD_ReturnType)0x01;
+    if(str != ((void*)0)){
+        while(*str != '\0'){
+            mcal_spi_send_byte_blocking(*str);
+            str++;
+        }
+    }
+    else{
+        status = (STD_ReturnType)0x00;
+    }
+    return status;
+}
+STD_ReturnType mcal_spi_receive_string_blocking(uint8 *str){
+    STD_ReturnType status = (STD_ReturnType)0x01;
+    if(str != ((void*)0)){
+
+        while(SSPBUF != '\0'){
+            mcal_spi_receive_byte_blocking(str);
+            str++;
+        }
+    }
+    else{
+        status = (STD_ReturnType)0x00;
+    }
+    return status;
 }

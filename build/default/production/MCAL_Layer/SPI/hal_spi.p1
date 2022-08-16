@@ -91,17 +91,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _LATA `Vuc ~T0 @X0 0 e@3977 ]
 "5030
 [v _SSPBUF `Vuc ~T0 @X0 0 e@4041 ]
-"2581
-[s S89 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S89 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF PSPIF ]
-"2591
-[s S90 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S90 . . TX1IF RC1IF ]
-"2580
-[u S88 `S89 1 `S90 1 ]
-[n S88 . . . ]
-"2597
-[v _PIR1bits `VS88 ~T0 @X0 0 e@3998 ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18Fxxxx_DFP/1.3.36/xc8\pic\include\proc\pic18f4620.h
 [; <" PORTA equ 0F80h ;# ">
 "192
@@ -573,7 +562,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 291 ]
 {
 "77
-[; ;MCAL_Layer/SPI/hal_spi.c: 77:           status = (STD_ReturnType)0x00;
+[; ;MCAL_Layer/SPI/hal_spi.c: 77:             status = (STD_ReturnType)0x00;
 [e = _status -> -> 0 `i `uc ]
 "78
 [; ;MCAL_Layer/SPI/hal_spi.c: 78:         }
@@ -718,48 +707,188 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 305 ]
 "121
-[; ;MCAL_Layer/SPI/hal_spi.c: 121: }
+[; ;MCAL_Layer/SPI/hal_spi.c: 121:     return status;
+[e ) _status ]
+[e $UE 303  ]
+"122
+[; ;MCAL_Layer/SPI/hal_spi.c: 122: }
 [e :UE 303 ]
 }
-"123
-[; ;MCAL_Layer/SPI/hal_spi.c: 123: STD_ReturnType mcal_spi_send_byte_blocking(uint8 data){
+"124
+[; ;MCAL_Layer/SPI/hal_spi.c: 124: STD_ReturnType mcal_spi_send_byte_blocking(uint8 data){
 [v _mcal_spi_send_byte_blocking `(uc ~T0 @X0 1 ef1`uc ]
 {
 [e :U _mcal_spi_send_byte_blocking ]
 [v _data `uc ~T0 @X0 1 r1 ]
 [f ]
-"124
-[; ;MCAL_Layer/SPI/hal_spi.c: 124:     SSPBUF = data;
-[e = _SSPBUF _data ]
 "125
-[; ;MCAL_Layer/SPI/hal_spi.c: 125:     while(!PIR1bits.SSPIF);
+[; ;MCAL_Layer/SPI/hal_spi.c: 125:     STD_ReturnType status = (STD_ReturnType)0x01;
+[v _status `uc ~T0 @X0 1 a ]
+[e = _status -> -> 1 `i `uc ]
+"126
+[; ;MCAL_Layer/SPI/hal_spi.c: 126:     uint8 dummyData ;
+[v _dummyData `uc ~T0 @X0 1 a ]
+"127
+[; ;MCAL_Layer/SPI/hal_spi.c: 127:     SSPBUF = data;
+[e = _SSPBUF _data ]
+"129
+[; ;MCAL_Layer/SPI/hal_spi.c: 129:      while(!SSPSTATbits.BF);
 [e $U 307  ]
 [e :U 308 ]
 [e :U 307 ]
-[e $ ! != -> . . _PIR1bits 0 3 `i -> 0 `i 308  ]
+[e $ ! != -> . . _SSPSTATbits 2 0 `i -> 0 `i 308  ]
 [e :U 309 ]
-"127
-[; ;MCAL_Layer/SPI/hal_spi.c: 127: }
+"130
+[; ;MCAL_Layer/SPI/hal_spi.c: 130:     dummyData = SSPBUF;
+[e = _dummyData _SSPBUF ]
+"131
+[; ;MCAL_Layer/SPI/hal_spi.c: 131:     return status;
+[e ) _status ]
+[e $UE 306  ]
+"132
+[; ;MCAL_Layer/SPI/hal_spi.c: 132: }
 [e :UE 306 ]
 }
-"128
-[; ;MCAL_Layer/SPI/hal_spi.c: 128: STD_ReturnType mcal_spi_receive_byte_blocking(uint8 *data){
+"133
+[; ;MCAL_Layer/SPI/hal_spi.c: 133: STD_ReturnType mcal_spi_receive_byte_blocking(uint8 *data){
 [v _mcal_spi_receive_byte_blocking `(uc ~T0 @X0 1 ef1`*uc ]
 {
 [e :U _mcal_spi_receive_byte_blocking ]
 [v _data `*uc ~T0 @X0 1 r1 ]
 [f ]
-"129
-[; ;MCAL_Layer/SPI/hal_spi.c: 129:     while(!SSPSTATbits.BF);
+"134
+[; ;MCAL_Layer/SPI/hal_spi.c: 134:     STD_ReturnType status = (STD_ReturnType)0x01;
+[v _status `uc ~T0 @X0 1 a ]
+[e = _status -> -> 1 `i `uc ]
+"136
+[; ;MCAL_Layer/SPI/hal_spi.c: 136:     while(!SSPSTATbits.BF);
 [e $U 311  ]
 [e :U 312 ]
 [e :U 311 ]
 [e $ ! != -> . . _SSPSTATbits 2 0 `i -> 0 `i 312  ]
 [e :U 313 ]
-"130
-[; ;MCAL_Layer/SPI/hal_spi.c: 130:     *data = SSPBUF;
+"137
+[; ;MCAL_Layer/SPI/hal_spi.c: 137:     *data = SSPBUF;
 [e = *U _data _SSPBUF ]
-"132
-[; ;MCAL_Layer/SPI/hal_spi.c: 132: }
+"138
+[; ;MCAL_Layer/SPI/hal_spi.c: 138:     return status;
+[e ) _status ]
+[e $UE 310  ]
+"139
+[; ;MCAL_Layer/SPI/hal_spi.c: 139: }
 [e :UE 310 ]
+}
+"141
+[; ;MCAL_Layer/SPI/hal_spi.c: 141: STD_ReturnType mcal_spi_send_string_blocking(uint8 *str){
+[v _mcal_spi_send_string_blocking `(uc ~T0 @X0 1 ef1`*uc ]
+{
+[e :U _mcal_spi_send_string_blocking ]
+[v _str `*uc ~T0 @X0 1 r1 ]
+[f ]
+"142
+[; ;MCAL_Layer/SPI/hal_spi.c: 142:     STD_ReturnType status = (STD_ReturnType)0x01;
+[v _status `uc ~T0 @X0 1 a ]
+[e = _status -> -> 1 `i `uc ]
+"143
+[; ;MCAL_Layer/SPI/hal_spi.c: 143:     if(str != ((void*)0)){
+[e $ ! != _str -> -> -> 0 `i `*v `*uc 315  ]
+{
+"144
+[; ;MCAL_Layer/SPI/hal_spi.c: 144:         while(*str != '\0'){
+[e $U 316  ]
+[e :U 317 ]
+{
+"145
+[; ;MCAL_Layer/SPI/hal_spi.c: 145:             mcal_spi_send_byte_blocking(*str);
+[e ( _mcal_spi_send_byte_blocking (1 *U _str ]
+"146
+[; ;MCAL_Layer/SPI/hal_spi.c: 146:             str++;
+[e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
+"147
+[; ;MCAL_Layer/SPI/hal_spi.c: 147:         }
+}
+[e :U 316 ]
+"144
+[; ;MCAL_Layer/SPI/hal_spi.c: 144:         while(*str != '\0'){
+[e $ != -> *U _str `ui -> 0 `ui 317  ]
+[e :U 318 ]
+"148
+[; ;MCAL_Layer/SPI/hal_spi.c: 148:     }
+}
+[e $U 319  ]
+"149
+[; ;MCAL_Layer/SPI/hal_spi.c: 149:     else{
+[e :U 315 ]
+{
+"150
+[; ;MCAL_Layer/SPI/hal_spi.c: 150:         status = (STD_ReturnType)0x00;
+[e = _status -> -> 0 `i `uc ]
+"151
+[; ;MCAL_Layer/SPI/hal_spi.c: 151:     }
+}
+[e :U 319 ]
+"152
+[; ;MCAL_Layer/SPI/hal_spi.c: 152:     return status;
+[e ) _status ]
+[e $UE 314  ]
+"153
+[; ;MCAL_Layer/SPI/hal_spi.c: 153: }
+[e :UE 314 ]
+}
+"154
+[; ;MCAL_Layer/SPI/hal_spi.c: 154: STD_ReturnType mcal_spi_receive_string_blocking(uint8 *str){
+[v _mcal_spi_receive_string_blocking `(uc ~T0 @X0 1 ef1`*uc ]
+{
+[e :U _mcal_spi_receive_string_blocking ]
+[v _str `*uc ~T0 @X0 1 r1 ]
+[f ]
+"155
+[; ;MCAL_Layer/SPI/hal_spi.c: 155:     STD_ReturnType status = (STD_ReturnType)0x01;
+[v _status `uc ~T0 @X0 1 a ]
+[e = _status -> -> 1 `i `uc ]
+"156
+[; ;MCAL_Layer/SPI/hal_spi.c: 156:     if(str != ((void*)0)){
+[e $ ! != _str -> -> -> 0 `i `*v `*uc 321  ]
+{
+"158
+[; ;MCAL_Layer/SPI/hal_spi.c: 158:         while(SSPBUF != '\0'){
+[e $U 322  ]
+[e :U 323 ]
+{
+"159
+[; ;MCAL_Layer/SPI/hal_spi.c: 159:             mcal_spi_receive_byte_blocking(str);
+[e ( _mcal_spi_receive_byte_blocking (1 _str ]
+"160
+[; ;MCAL_Layer/SPI/hal_spi.c: 160:             str++;
+[e ++ _str * -> -> 1 `i `x -> -> # *U _str `i `x ]
+"161
+[; ;MCAL_Layer/SPI/hal_spi.c: 161:         }
+}
+[e :U 322 ]
+"158
+[; ;MCAL_Layer/SPI/hal_spi.c: 158:         while(SSPBUF != '\0'){
+[e $ != -> _SSPBUF `ui -> 0 `ui 323  ]
+[e :U 324 ]
+"162
+[; ;MCAL_Layer/SPI/hal_spi.c: 162:     }
+}
+[e $U 325  ]
+"163
+[; ;MCAL_Layer/SPI/hal_spi.c: 163:     else{
+[e :U 321 ]
+{
+"164
+[; ;MCAL_Layer/SPI/hal_spi.c: 164:         status = (STD_ReturnType)0x00;
+[e = _status -> -> 0 `i `uc ]
+"165
+[; ;MCAL_Layer/SPI/hal_spi.c: 165:     }
+}
+[e :U 325 ]
+"166
+[; ;MCAL_Layer/SPI/hal_spi.c: 166:     return status;
+[e ) _status ]
+[e $UE 320  ]
+"167
+[; ;MCAL_Layer/SPI/hal_spi.c: 167: }
+[e :UE 320 ]
 }

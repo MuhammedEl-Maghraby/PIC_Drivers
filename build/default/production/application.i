@@ -5471,6 +5471,8 @@ STD_ReturnType mcal_spi_deinit(const spi_cfg_t *spi_obj);
 STD_ReturnType mcal_spi_select_slave(uint8 slave_pin);
 STD_ReturnType mcal_spi_send_byte_blocking(uint8 data);
 STD_ReturnType mcal_spi_receive_byte_blocking(uint8 *data);
+STD_ReturnType mcal_spi_send_string_blocking(uint8 *str);
+STD_ReturnType mcal_spi_receive_string_blocking(uint8 *str);
 # 18 "application.c" 2
 
 
@@ -5479,31 +5481,36 @@ spi_cfg_t _spi = {
     .serial_port_enable = 1,
     .spi_clock_Polarity = Idle_State_Low,
     .spi_clock_phase = SPI_Transmit_On_Trans_From_Idle_To_Active,
-    .spi_mode = SPI_Master_Clock_Fosc_Div_By_64,
-    .spi_sample_data = SPI_Data_Sampled_At_End_Of_Output,
+    .spi_mode = SPI_Master_Clock_Fosc_Div_By_4,
+    .spi_sample_data = SPI_Data_Sampled_At_Middle_Of_Output,
 
 };
 
 
 
 int main(void){
-# 62 "application.c"
-    mcal_spi_init(&_spi);
-
-
-
-
-
+# 71 "application.c"
+    SSPCON1bits.SSPM0 = 0;
+    SSPCON1bits.SSPM1 = 0;
+    SSPCON1bits.SSPM2 = 0;
+    SSPCON1bits.SSPM3 = 0;
+    SSPCON1bits.SSPEN = 1;
+    SSPCON1bits.CKP = 0;
+    SSPSTATbits.CKE = 0;
+    SSPSTATbits.SMP = 0;
+    TRISCbits.RC5 = 0;
+    TRISCbits.RC3 = 0;
+    TRISAbits.RA5 = 0;
 
 
     while(1){
+
+
         mcal_spi_select_slave(5);
+
         mcal_spi_send_byte_blocking('M');
         _delay((unsigned long)((1000)*(8000000/4000.0)));
-        mcal_spi_select_slave(5);
-        mcal_spi_send_byte_blocking('S');
-        _delay((unsigned long)((1000)*(8000000/4000.0)));
-# 93 "application.c"
+# 120 "application.c"
     }
 
 

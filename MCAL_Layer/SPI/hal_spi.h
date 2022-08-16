@@ -86,7 +86,8 @@ STD_ReturnType mcal_spi_deinit(const spi_cfg_t *spi_obj);
 STD_ReturnType mcal_spi_select_slave(uint8 slave_pin);
 STD_ReturnType mcal_spi_send_byte_blocking(uint8 data);
 STD_ReturnType mcal_spi_receive_byte_blocking(uint8 *data);
-
+STD_ReturnType mcal_spi_send_string_blocking(uint8 *str);
+STD_ReturnType mcal_spi_receive_string_blocking(uint8 *str);
 
 
 #endif	/* HAL_SPI_H */
